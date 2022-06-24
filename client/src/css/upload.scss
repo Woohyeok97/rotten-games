@@ -1,0 +1,86 @@
+.upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 160vh;
+}
+.upload h4 {
+    margin: 8px 0;
+}
+.upload .upload-form-box {
+    width: 28vw;
+    margin: 40px auto;
+
+    .upload-btn {
+        width: 100%;
+        height: 48px;
+        margin-top: 16px;
+        color: #f9f9f9;
+        font-size: 16px;
+        font-weight: 500;
+        border : 1px solid transparent;
+        border-radius: 0.25rem;
+        box-sizing: border-box;
+        background: #0082f0;
+    }
+}
+.upload .upload-form-box .upload-form {
+    
+}
+
+.upload-form .upload-form-item {
+    margin-bottom: 25px;
+    .check-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .tag-check-box {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.upload-form .upload-text-input {
+    width: 100%;
+    height: 48px;
+    padding: 4px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    color: #f9f9f9;
+    background-color: rgb(49, 52, 62);
+}
+.upload-form .upload-check-input {
+    display: none;
+    opacity: 0;
+}
+.upload-form .upload-check-input + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 48px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    box-sizing: border-box;
+    color: #f9f9f9;
+    background-color: rgb(49, 52, 62);
+}
+
+.upload-check-input[type=radio]:checked + label{
+    color: #f9f9f9;
+    background-color: rgba(0,130,240,.2);
+    border: 1px solid #0082f0;
+}
+.upload-check-input[type=checkbox]:checked + label{
+    color: #f9f9f9;
+    background-color: rgba(0,130,240,.2);
+    border: 1px solid #0082f0;
+}
+
+

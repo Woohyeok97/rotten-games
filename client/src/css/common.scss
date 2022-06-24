@@ -1,0 +1,78 @@
+/* Black900 */
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@900&display=swap');
+/* Regular */
+/* @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap'); */
+/* font-family: 'Black Han Sans', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Noto Sans KR', sans-serif; */
+
+$디즈니짙은남색 : #040617;
+$디즈니옅은남색 : #1b1d29;
+$디즈니검정 : #050714;
+$디즈니인풋회색 : #31343e;
+$디즈니버튼파랑 : #0072d2;
+$애플회색 : #2d2d2d;
+
+
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+h1 {
+  margin: 0;
+}
+
+.Root {
+  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  position: relative;
+  background: #050714;;
+  color: #f9f9f9;
+}
+
+section {
+  padding : 5.6vw;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 5.6vw;
+}
+.navbar .logo {
+  height: 80%;
+}
+.navbar .logo #logo-image {
+  height: 100%;
+  border: 2px solid gray;
+}
+.navbar .navbar-container {
+
+}
+.navbar .navbar-container ul {
+  margin: 0;
+  padding: 0;
+}
+.navbar .navbar-container ul #separator {
+  background: currentColor;
+  color: #FFF;
+  height: 16px;
+  width: 2px;
+  margin: auto 17px;
+  padding: 0;
+}
+.navbar .navbar-container ul li {
+  display: inline-block;
+  padding: 28px 17px;
+}
+.btn {
+  background: #038430;
+}
+
+
+
+
