@@ -6,6 +6,7 @@ import axios from 'axios';
 //컴포넌트
 import Main from './commponents/main'
 import Finder from './commponents/finder'
+import Games from './commponents/games';
 import Login from './commponents/login';
 import Upload from './commponents/upload';
 
@@ -27,17 +28,20 @@ useEffect(()=>{
 
 let dispatech = useDispatch()
 const gameData = useSelector((state)=>state.gameData)
-  return (
-    <div className="Root">
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={ <Main/> }/> 
-        { gameData ? <Route path='/finder' element={ <Finder/> }/> : null}
-        <Route path='/login' element={ <Login/> }/>
-        <Route path='/upload' element={ <Upload/> }/>
-      </Routes> 
-    </div>
-  );
+    return (
+      <div className="Root">
+        <Navbar/>
+        { gameData ?
+        <Routes>
+          <Route path='/' element={ <Main/> }/> 
+          <Route path='/finder' element={ <Finder/> }/>
+          <Route path='/games/:id' element={ <Games/> }/>
+          <Route path='/login' element={ <Login/> }/>
+          <Route path='/upload' element={ <Upload/> }/>
+        </Routes> 
+        : null}
+      </div>
+    );
 }
 
 function Navbar() {

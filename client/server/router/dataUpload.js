@@ -22,11 +22,13 @@ let storage = multer.diskStorage({
         cb(null,`${Date.now()}_${file.originalname}` )
     }
 })
-
 let upload = multer({storage : storage}).single('game_image');
 
+// router.post('/imageUpload', upload, (요청, 응답)=>{
+//     응답.send({ filename : 응답.req.file.filename })
+// })
 router.post('/imageUpload', upload, (요청, 응답)=>{
-    응답.send({ filename : 응답.req.file.filename })
+    응답.send({ filename : 요청.file.filename })
 })
 
 router.post('/addgame', function(요청, 응답){
@@ -45,25 +47,7 @@ router.post('/addgame', function(요청, 응답){
     응답.send(게임데이터)
 })
 
-// router.post('/addgame', function(요청, 응답){
-//     let 게임데이터 = {
-//         title : 요청.body.title,
-//         genre : 요청.body.genre,
-//         image_main : 요청.body.image_main,
-//         platform : 요청.body.platform,
-//         developer : 요청.body.develoer,
-//         tag : 요청.body.tag
-//     }
-//     db.collection('game_data').insertOne(게임데이터 , function(에러, 결과){
-//         if(!결과) { console.log(에러) }
-//         console.log(결과)
-//     })
-    
-//     응답.send('전송완료')
-// })
-
-// router.post('/imageUpload', upload.single('game_image'), function(요청, 응답){
-//     응답.send('저장완료')
-// })
-
+router.get('/aa', (요청, 응답)=>{
+    응답.sendStatus(200)
+})
 module.exports = router

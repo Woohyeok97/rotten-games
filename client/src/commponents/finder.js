@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 //컴포넌트
 import Dropdown from './dropdown';
@@ -77,8 +78,11 @@ return(
     
 
 function Card(props) {
+
+  let navigate = useNavigate()
+
   return(
-    <div className="finder-card-item">
+    <div className="finder-card-item" onClick={()=>{ navigate(`/games/${props.데이터.title}`) }}>
       <img src={'/image/' + props.데이터.image_main}/>
       <div className="card-info">
         <p>{props.데이터.title}</p>

@@ -155,6 +155,11 @@ function AddGame() {
         
       </form>
       <button className="upload-btn" onClick={()=>{ postData() }}>데이터베이스에 전송</button>
+      <button onClick={()=>{
+        axios.get('http://localhost:3001/aa')
+        .then((r)=>{console.log(r)})
+        .catch()
+      }}>요청</button>
     </div>
   )
 }
