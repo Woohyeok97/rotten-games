@@ -17,10 +17,10 @@ router.get('/requireGameData', function(요청, 응답){
     })
 })
 //아이디를 넣을 방법을 생각해보자!
-router.get('requireImage', (요청, 응답)=>{
-    db.collection('game_data_image').findOne({ _id : '아이디' }, function(에러, 결과){
-        응답.send(결과)
-    })
-})
+// router.get('requireImage', (요청, 응답)=>{
+//     db.collection('game_data_image').findOne({ _id : '아이디' }, function(에러, 결과){
+//         응답.send(결과)
+//     })
+// })
 
 module.exports = router

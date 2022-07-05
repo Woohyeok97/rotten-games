@@ -26,7 +26,8 @@ let storage = multer.diskStorage({
 let upload = multer({storage : storage}).single('game_image');
 
 //이미지 저장폴더 만들기 함수
-const fs = require('fs')
+const fs = require('fs');
+const { ObjectId } = require('bson');
 const makeFolder = (dir) => {
   if(!fs.existsSync(dir)){
     fs.mkdirSync(dir)
@@ -40,6 +41,7 @@ router.post('/addgame', function(요청, 응답){
       genre : 요청.body.genre,
       platform : 요청.body.platform,
       developer : 요청.body.developer,
+      image_main : '', 
       tag : 요청.body.tag,
     }
 
@@ -58,14 +60,24 @@ router.post('/imageUpload', upload, (요청, 응답)=>{
   //DB 이미지 콜렉션에 저장하는 코드는 여기에 작성해야겠네!
   //그리고 부모 콜렉션 gameData를 가리킬수있게 부모 _id 를 저장해야겠네!
   let gameImage = {
+    title : 요청.body.title,
     parent : 요청.body.parentId,
-    mainImage : 요청.file.filename,
+    image_main : 요청.file.filename,
+    image_background : '',
   }
   db.collection('game_data_image').insertOne(gameImage, (에러, 결과)=>{
     if(!결과) console.log(에러)
   })
+  db.collection('game_data').updateOne({ _id : ObjectId(요청.body.parentId) }, { $set : { image_main : 요청.file.filename }},(에러, 결과)=>{
+    if(!결과) console.log(에러)
+  })
   응답.status(200).send({ message : '이미지 저장성공!' })
 })
+
+
+
+
+
 
 router.delete('/delall', (요청, 응답)=>{
   db.collection('game_data').remove((에러, 결과)=>{})

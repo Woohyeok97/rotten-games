@@ -76,10 +76,11 @@ function AddGame() {
         const formData = new FormData();
         
         axios.post('http://localhost:3001/addgame', 게임데이터)
-        .then((result)=>{ console.log(result.data.insertedId)
+        .then((result)=>{ console.log(result)
 
           formData.append('game_image', gameImage);
           formData.append('parentId', result.data.insertedId )
+          formData.append('title', 게임데이터.title)
 
           axios.post('http://localhost:3001/imageUpload', formData,
           { header: { 'content-type': 'multipart/form-data' }})
