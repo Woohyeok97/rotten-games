@@ -36,6 +36,12 @@ function 임시() {
   const changeLineup = ()=> {
 
   }
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/requireImage', )
+    .then()
+    .catch()
+  },[])
 return(
   <section className="finder">
     <div className="finder-container">
@@ -83,9 +89,10 @@ function Card(props) {
 
   return(
     <div className="finder-card-item" onClick={()=>{ navigate(`/games/${props.데이터.title}`) }}>
-      <img src={'/image/' + props.데이터.image_main}/>
+      <img src={`/image/'${props.데이터.title}/`}/>
       <div className="card-info">
         <p>{props.데이터.title}</p>
+       { `/image/'${props.데이터.title}/`}
         <p>유저평점 : ★★★★☆</p>
       </div>
     </div>

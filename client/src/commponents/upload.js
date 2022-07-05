@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
 
@@ -70,29 +72,29 @@ function AddGame() {
       setBlankCheck(true)
       if(!(title && genre && platform.length && developer && tag.length && gameImage)) {
         alert('빈칸을 입력해주세용!')
-      } else {
-      
-      const formData = new FormData();
-      formData.append('game_image', gameImage);
+      }else {
+        const formData = new FormData();
+        
+        axios.post('http://localhost:3001/addgame', 게임데이터)
+        .then((result)=>{ console.log(result.data.insertedId)
 
-      axios.post('http://localhost:3001/imageUpload', formData, 
-      { header: { 'content-type': 'multipart/form-data' }})
-      .then((result)=>{ 
-        axios.post('http://localhost:3001/addgame', { 게임데이터 : 게임데이터 , url : result.data.filename})
-        .then((result)=>{ console.log(result) })
+          formData.append('game_image', gameImage);
+          formData.append('parentId', result.data.insertedId )
+
+          axios.post('http://localhost:3001/imageUpload', formData,
+          { header: { 'content-type': 'multipart/form-data' }})
+          .then((result)=>{  })
+          .catch()})
         .catch(err =>{ console.log('실패!', err) })
-       })
-      .catch((err)=>{ console.log('실패!', err) });
 
-      alert('업로드 완료!')
-      window.location.replace('/upload')
-      }
-      
-    } else {
+        alert('업로드 완료!')
+        //왜 replace 를 사용하면 이미지 저장도 안되고 이미지콜렉션도 저장이 안될까...
+        // window.location.replace('/upload')
+        }
+    }else {
       alert('취소!')
     }
   }
-
 
   return(
     <div className="upload-form-box"> 
@@ -155,11 +157,9 @@ function AddGame() {
         
       </form>
       <button className="upload-btn" onClick={()=>{ postData() }}>데이터베이스에 전송</button>
-      <button onClick={()=>{
-        axios.get('http://localhost:3001/aa')
-        .then((r)=>{console.log(r)})
-        .catch()
-      }}>요청</button>
+      <button onClick={()=>{ axios.delete('http://localhost:3001/delall').then(()=>{ console.log('삭제완료') }) }}>
+        데이터전체삭제
+      </button>
     </div>
   )
 }

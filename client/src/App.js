@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom'
@@ -39,7 +41,7 @@ const gameData = useSelector((state)=>state.gameData)
           <Route path='/login' element={ <Login/> }/>
           <Route path='/upload' element={ <Upload/> }/>
         </Routes> 
-        : null}
+        : null }
       </div>
     );
 }

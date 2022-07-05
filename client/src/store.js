@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
 
 //state 생성하기
 //createSlice 는 useState처럼 state를 만들어주는 함수다
@@ -7,9 +6,6 @@ import axios from 'axios'
 //name 은 state 의 이름이고 initialState 에는 state 값을 넣는다.
 //reducers : {} 는 state변경함수다. 작명함수(state){reture 수정내용}으로 작성한다.
 
-axios.get('http://localhost:3001/requireGameData')
-.then((결과)=>{ setGameData(결과.data.game) })
-.catch(()=>{ console.log('실패!') }) 
 
 let gameData = createSlice({
   name : 'gameData',

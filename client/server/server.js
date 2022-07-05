@@ -3,12 +3,12 @@ const app = express();
 const cors = require('cors');
 const request = require('request');
 
-const basic = require('./router/index')
-const upload = require('./router/dataUpload')
+const dataDownload = require('./router/dataDownload')
+const dataUpload = require('./router/dataUpload')
 
 app.use(cors())
-app.use('/', basic);
-app.use('/', upload);
+app.use('/', dataDownload);
+app.use('/', dataUpload);
 
 
 const port = 3001;
