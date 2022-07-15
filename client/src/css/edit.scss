@@ -1,0 +1,85 @@
+$애플회색 : #2d2d2d;
+.edit {
+    min-height: 120vh;
+}
+.game-data-list {
+
+}
+.game-data-list .data-card {
+    margin: 32px 0;
+    background-color: $애플회색;
+
+    p, h3 { margin: 4px; }
+    h3 { color: palevioletred; }
+}
+.data-card .game-data {
+}
+.game-data .game-info {
+    display: flex;
+    flex-direction: column;
+    .info-text {
+        color: #f9f9f9;
+        width: 30%;
+        height: 42px;
+        padding: 4px 12px;
+        margin: 12px;
+        font-size: 15px;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        box-sizing: border-box;
+        background: #31343e;
+    }
+}
+.game-info .info-checkbox {
+    display: flex;
+    margin: 0;
+    .check-input {
+        display: none;
+    }
+    .check-input + label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:10%;
+        height: 36px;
+        padding: 4px 8px;
+        margin: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        box-sizing: border-box;
+        color: #f9f9f9;
+        background-color: rgb(49, 52, 62); 
+    }
+    .check-input[type=radio]:checked + label {
+        color: #f9f9f9;
+        background-color: rgba(0,130,240,.2);
+        border: 1px solid #0082f0;
+    }
+    .check-input[type=checkbox]:checked + label {
+        color: #f9f9f9;
+        background-color: rgba(0,130,240,.2);
+        border: 1px solid #0082f0;
+    }
+}
+.data-card .image-btn {
+    margin-bottom: 24px;
+}
+.game-data .btn-wrap {
+
+}
+.data-card .game-images-container {
+    
+}
+.data-card .game-images-wrap {
+    display: flex;
+    justify-content: start;
+}
+.data-card .game-images-wrap .game-images-item {
+    text-align: center;
+    width: 30%;
+    margin: 12px 24px;
+}
+.data-card .game-images-wrap .game-images-item img{
+    width: 100%;
+}
+

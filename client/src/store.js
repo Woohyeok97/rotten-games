@@ -6,7 +6,6 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 //name 은 state 의 이름이고 initialState 에는 state 값을 넣는다.
 //reducers : {} 는 state변경함수다. 작명함수(state){reture 수정내용}으로 작성한다.
 
-
 let gameData = createSlice({
   name : 'gameData',
   initialState : null,
@@ -17,14 +16,16 @@ let gameData = createSlice({
   }
 })
 
-let user = createSlice({
-  name : 'user', //state이름
-  initialState : '안녕하세용~~!' ,//state값
+let gameSort = createSlice({
+  name : 'gameSort',
+  initialState : {
+    장르 : ['스포츠', 'FPS', '액션', '시뮬레이션'],
+    플랫폼 : ['Windows', 'PS4', 'PS5', 'XBOX', 'SWITCH'],
+    태그 : ['1인칭', '3인칭', 'RPG', '생존', '협동', '멀티', '턴제', '오픈월드', '현대', '스토리',
+    '캐주얼', '힐링',],
+  }
 })
-let 임시 = createSlice({
-  name : '임시',
-  initialState : ['0번째', '1번째']
-})
+
 
 //state를 다 만들었으니 이제 등록을 해야한다. 그럴때 쓰는 함수가 configureStore() 함수다.
 //createState()로 state를 만든후, export default configureStore()안 객체속 reducer : {} 가 있다.
@@ -33,8 +34,7 @@ let 임시 = createSlice({
 export default configureStore({
   reducer: { 
     gameData : gameData.reducer,
-    user : user.reducer,
-    임시 : 임시.reducer,
+    gameSort : gameSort.reducer
   }
 })
 

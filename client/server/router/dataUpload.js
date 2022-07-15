@@ -23,7 +23,12 @@ let storage = multer.diskStorage({
     cb(null,`${Date.now()}_${file.originalname}` )
   }
 })
-let upload = multer({storage : storage}).single('game_image');
+// let upload = multer({storage : storage}).single('game_image');
+let upload = multer({storage : storage}).fields([
+  { name : 'main_img' },
+  { name : 'background_img' },
+  { name : 'images' , maxCount : 6 }
+])
 
 //이미지 저장폴더 만들기 함수
 const fs = require('fs');
@@ -62,16 +67,21 @@ router.post('/imageUpload', upload, (요청, 응답)=>{
   let gameImage = {
     title : 요청.body.title,
     parent : 요청.body.parentId,
-    image_main : 요청.file.filename,
-    image_background : '',
+    image_main : 요청.files.main_img[0].filename,
+    image_background : 요청.files.background_img[0].filename,
+    youtube_url : 요청.body.youtube_url 
   }
   db.collection('game_data_image').insertOne(gameImage, (에러, 결과)=>{
     if(!결과) console.log(에러)
   })
-  db.collection('game_data').updateOne({ _id : ObjectId(요청.body.parentId) }, { $set : { image_main : 요청.file.filename }},(에러, 결과)=>{
+  db.collection('game_data').updateOne({ _id : ObjectId(요청.body.parentId) }, { $set : { image_main : 요청.files.main_img[0].filename }},(에러, 결과)=>{
     if(!결과) console.log(에러)
   })
+  
   응답.status(200).send({ message : '이미지 저장성공!' })
+  console.log(요청.files.main_img[0].filename)
+  console.log(요청.files.background_img[0].filename)
+  응답.send()
 })
 
 

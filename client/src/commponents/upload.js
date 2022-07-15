@@ -60,11 +60,21 @@ function AddGame() {
   }
 
   //formData에 담을 데이터만들기
-  const [gameImage, setGameImage] = useState('')
-  const uploadImageHandle = (e)=>{
-    setGameImage(e.target.files[0])
-  }
+  // const [gameImage, setGameImage] = useState('')
+  // const uploadImageHandle = (e)=>{
+  //   setGameImage(e.target.files[0])
+  // }
 
+  const [gameImage, setGameImage] = useState({
+    main : '',
+    background : '',
+    images : '',
+    youtube_url : '아직없음',
+  })
+  const uploadImageHandle = (e, 이미지종류)=>{
+    const value = e.target.files[0]
+    setGameImage({...gameImage, [이미지종류] : value})
+  }
 
   //데이터 업로드 버튼 이벤트함수
   const postData = ()=>{
@@ -78,13 +88,15 @@ function AddGame() {
         axios.post('http://localhost:3001/addgame', 게임데이터)
         .then((result)=>{ console.log(result)
 
-          formData.append('game_image', gameImage);
+          formData.append('main_img', gameImage.main);
+          formData.append('background_img', gameImage.background);
           formData.append('parentId', result.data.insertedId )
           formData.append('title', 게임데이터.title)
+          formData.append('youtube_url', gameImage.youtube_url)
 
           axios.post('http://localhost:3001/imageUpload', formData,
           { header: { 'content-type': 'multipart/form-data' }})
-          .then((result)=>{  })
+          .then((result)=>{ console.log(result) })
           .catch()})
         .catch(err =>{ console.log('실패!', err) })
 
@@ -108,9 +120,16 @@ function AddGame() {
         </div>
 
         <div className="upload-form-item game-image-box">
-          <h4>게임 사진</h4>
-          <input name="game_image" type="file" 
-            onChange={uploadImageHandle}/>
+          <h4>게임 사진 : 메인 이미지</h4>
+          <input name="main_img" type="file" 
+            onChange={(e)=>{uploadImageHandle(e, 'main')}}/>
+          { blankCheck ? 빈칸을입력하세요(gameImage) : null }
+        </div>
+
+        <div className="upload-form-item game-image-box">
+          <h4>게임 사진 : 배경 이미지</h4>
+          <input name="background_img" type="file" 
+            onChange={(e)=>{uploadImageHandle(e, 'background')}}/>
           { blankCheck ? 빈칸을입력하세요(gameImage) : null }
         </div>
 

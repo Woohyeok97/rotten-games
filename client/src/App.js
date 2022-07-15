@@ -11,6 +11,7 @@ import Finder from './commponents/finder'
 import Games from './commponents/games';
 import Login from './commponents/login';
 import Upload from './commponents/upload';
+import Edit from './commponents/edit';
 
 //CSS
 import './css/common.scss';
@@ -30,6 +31,7 @@ useEffect(()=>{
 
 let dispatech = useDispatch()
 const gameData = useSelector((state)=>state.gameData)
+
     return (
       <div className="Root">
         <Navbar/>
@@ -38,6 +40,7 @@ const gameData = useSelector((state)=>state.gameData)
           <Route path='/' element={ <Main/> }/> 
           <Route path='/finder' element={ <Finder/> }/>
           <Route path='/games/:id' element={ <Games/> }/>
+          <Route path='/edit/' element={ <Edit/> }/>
           <Route path='/login' element={ <Login/> }/>
           <Route path='/upload' element={ <Upload/> }/>
         </Routes> 
@@ -57,7 +60,8 @@ function Navbar() {
         </div>
         <div className="navbar-container">
           <ul>
-          <li onClick={()=>{ navigate('/upload') }}>관리자 페이지(임시)</li>
+            <li onClick={()=>{ navigate('/edit') }}>데이터 수정 & 삭제</li>
+            <li onClick={()=>{ navigate('/upload') }}>데이터 업로드</li>
             <li id="separator"></li>
             <li onClick={()=>{ navigate('/finder') }}>모든게임</li>
             <li id="separator"></li>
