@@ -1,0 +1,71 @@
+.filter {
+  display: flex;
+  flex-basis: 80%;
+
+  .genre {
+    margin-right: 24px;
+  }
+  .sort {
+    margin-right: 24px;
+  }
+}
+
+//미니드롭다운
+.dropContainer {
+  position: relative;
+  width: 112px;
+  z-index: 1;
+  margin-right: 24px;
+  .state {
+    display: none;
+  }
+  .state:checked + .label + .dropContent {
+    display: block;
+  }
+  .state:checked + .label > .icon {
+    transform: rotate(-180deg);
+  }
+  .label {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 6px;
+  }
+  .icon {
+    transition: transform 250ms ease-out;
+    flex-basis: 24px;
+    text-align: center;
+  }
+  .dropContent {
+    display: none;
+    position: absolute;
+    background-color: #515163;
+    width: 100%;
+    margin-top: 6px;
+    ul {
+      padding: 6px 12px 12px 6px;
+      margin: 0;
+      list-style: none;
+    }
+  }
+}
+
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-basis: 20%;
+  width: 200px;
+  height: 36px;
+
+  .searchBar {
+    flex-basis: 80%;
+    height: 100%;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    background-color: #1c1c1f;
+  }
+}

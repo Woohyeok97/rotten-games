@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 5.6vw;
+  position: relative;
+  z-index: 1;
+  background-color: #5383e8;
+}
+
+.logo {
+  height: 80%;
+  #logoImg {
+    height: 100%;
+    border: 2px solid gray;
+  } 
+}
+.content {
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  #separator {
+    background: currentColor;
+    color: #FFF;
+    height: 16px;
+    width: 2px;
+    margin: auto 17px;
+    padding: 0;
+  }
+  ul li {
+    display: inline-block;
+    padding: 28px 17px;
+  }
+}

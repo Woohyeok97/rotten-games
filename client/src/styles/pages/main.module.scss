@@ -1,0 +1,38 @@
+.main {
+
+}
+.visual {
+  background: url('../../image/엘든링_메인표지용.webp') center no-repeat;
+  background-size: cover;
+  width: 100%;
+  position: relative;
+  margin-top: -80px;
+  height: 480px;
+
+  .visualContent{
+    position: absolute;
+    top: 120px;
+    left: 60px;
+    max-width: 45%;
+    color: #f9f9f9;
+    font-size: 20px;
+  }
+
+  .btnWrap {
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  height: 400px;
+
+  .jumbotronContent {
+    width: 100%;
+    text-align: center;
+  }
+}

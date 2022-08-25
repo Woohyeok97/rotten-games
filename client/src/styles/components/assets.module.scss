@@ -1,0 +1,76 @@
+//드롭다운 버튼
+.dropButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 -6px;
+
+  .state {
+    display: none;
+  }
+  .state:checked + .label + .dropContent {
+    display: block;
+  }
+  .state:checked + .label > .icon {
+    transform: rotate(-180deg);
+  }
+  .label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    width: 120px;
+    margin-right: 24px;
+    .title {
+      margin-right: 16px;
+    }
+    .icon {
+      transition: transform 250ms ease-out;
+      text-align: center;
+    }
+  }
+}
+
+
+.platformBox {
+  display: flex;
+  align-items: center;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 148px;
+    font-size: large;
+    padding: 4px 12px;
+    margin-right: 24px;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    background-color: #5383e8;
+  }
+}
+
+.platformSmallBox {
+  display: flex;
+  align-items: center;
+  .item {
+    font-size: small;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    background-color: #5383e8;
+  }
+}
+
+.tagBox {
+  display: flex;
+  align-items: center;
+  .item {
+    color: #9e9eb1;
+    margin-right: 8px;
+  }
+}

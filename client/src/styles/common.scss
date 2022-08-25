@@ -1,0 +1,192 @@
+/* Black900 */
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR:wght@900&display=swap');
+/* Regular */
+/* @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap'); */
+/* font-family: 'Black Han Sans', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Noto Sans KR', sans-serif; */
+
+$디즈니짙은남색 : #040617;
+$디즈니옅은남색 : #1b1d29;
+$디즈니검정 : #050714;
+$디즈니인풋회색 : #31343e;
+$디즈니버튼파랑 : #0072d2;
+$애플회색 : #2d2d2d;
+$공통화이트 : #f9f9f9;
+
+$OPGG배경 : #1c1c1f;
+$OPGG템플릿헤더 : #31313c;
+$OPGG템플릿배경 : #282830;
+$OPGG템플릿선택 : #515163;
+$OPGG서치 : #1c1c1f;
+$OPGG버튼파랑글씨 : #5383e8;
+$OPGG파랑경계 : #4171d6;
+$OPGG진한파랑 : #2d7fdd;
+$OPGG회색글씨 : #9e9eb1;
+$OPGG회색보더 : #979797;
+$OPGG레드 : #D31A45;
+$OPGG연한레드 : #E84057;
+
+
+
+section {
+  margin-top: 84px;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
+h1 {
+  margin: 0;
+}
+/* input 기본 스타일 초기화 */
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+}
+input:focus {
+  outline: none;
+}
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+}
+textarea:focus {
+  outline: none;
+}
+
+.Root {
+  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  position: relative;
+  min-height: 980px;
+  background: #1c1c1f;
+  color: #f9f9f9;
+}
+.ReactPlayer {
+  margin-bottom: 24px;
+}
+//input 모음
+.textInput {
+  height: 36px;
+  padding: 4px 12px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #f9f9f9;
+  background-color: #1c1c1f;
+}
+.checkInput {
+  display: none;
+}
+.checkInput + label {
+  text-align: center;
+  padding: 4px 12px;
+  margin-top: 12px;
+  margin-right: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  box-sizing: border-box;
+  color: #f9f9f9;
+  background-color: #1c1c1f;
+}
+.checkInput[type=radio]:checked + label{
+  color: #f9f9f9;
+  background-color: rgba(0,130,240,.2);
+  border: 1px solid #0082f0;
+}
+.checkInput[type=checkbox]:checked + label{
+  color: #f9f9f9;
+  background-color: rgba(0,130,240,.2);
+  border: 1px solid #0082f0;
+}
+
+.img {
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.btn {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 16px;
+  padding: 4px 12px;
+  height: 36px;
+  min-width: 64px;
+  color: #f9f9f9;;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  background: #4171d6;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #5383e8;;
+}
+.btnRed {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 16px;
+  padding: 4px 12px;
+  height: 36px;
+  min-width: 64px;
+  color: #f9f9f9;;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  background: #D31A45;
+  cursor: pointer;
+}
+.btnRed:hover {
+  background-color: #E84057;
+}
+.btnSmall {
+  font-size: 14px;
+  color: #979797;
+  font-weight: 200;
+  padding: 2px 12px;
+  cursor: pointer;
+}
+.btnSmall:hover {
+  color : #9e9eb1;
+}
+
+.blankCheck {
+  color: #E84057
+}
+
+.btn-small-blue {
+  width: 10%;
+  height: 36px;
+  color: $공통화이트;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  background: #016cf9;
+  cursor: pointer;
+}
+.btn-small-red {
+  width: 10%;
+  height: 36px;
+  color: $공통화이트;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  background: red;
+  cursor: pointer;
+}
+
+
+
+
+

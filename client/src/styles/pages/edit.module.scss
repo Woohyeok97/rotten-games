@@ -1,0 +1,46 @@
+.edit {
+
+}
+
+.form {
+  h3 {
+    color: salmon;
+    margin: 0 0 12px;
+  }
+  h4 {
+    color: lightskyblue;
+    margin: 12px 2px 6px;
+  }
+}
+.gameInfo {
+  margin-bottom: 12px;
+  .textBox {
+
+  }
+  .checkBox {
+    
+  }
+}
+.btnWrap1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+.btnWrap2 {
+  display: flex;
+}
+
+.imgWrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+  border-top: 1px solid #515163;
+}
+.imgItem {
+  flex-basis: 360px;
+  img {
+    width: 100%;
+  }
+}
+

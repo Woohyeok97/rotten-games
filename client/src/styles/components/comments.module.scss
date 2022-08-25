@@ -1,0 +1,138 @@
+.comments {
+  h3 {
+    margin: 0;
+  }
+}
+.header {
+  background-color: #31313c;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 24px;
+  }
+}
+.commentsInputBox {
+  display: flex;
+  .commentsInput {
+    display: none;
+  }
+  .commentsInput + label {
+    height: 46px;
+    line-height: 42px;
+    padding: 0 18px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+  .commentsInput + label:hover {
+    background-color: #282830;
+  }
+  .commentsInput:checked[type=radio] + label {
+    background-color: #515163;
+  }
+}
+
+.userComments {
+  margin-top: 48px;
+  ul { padding: 0; }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    margin-top: 16px;
+    border: 1px solid #1c1c1f;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+}
+.commentBox {
+
+  .userInfo {
+    display: flex;
+    color: #9e9eb1;
+    .name {
+
+    }
+    .separator {
+      background: currentColor;
+      color: #9e9eb1;
+      height: 16px;
+      width: 2px;
+      margin: auto 17px;
+      padding: 0;
+    }
+    .date {
+
+    }
+    .recommend {
+      color: salmon;
+    }
+  }
+
+  .comment {
+
+  }
+}
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  .btnWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -16px;
+  }
+}
+
+
+.commentWrite {
+  display: flex;
+  height: 124px;
+  padding: 12px;
+  justify-content: space-between;
+  background-color: #1c1c1f;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+
+  .textareaBox {
+    flex-basis: 100%;
+    .userName {
+      color: #f9f9f9;
+      margin-bottom: 6px;
+    }
+    .textarea {
+      background-color: #1c1c1f;
+      color: #9e9eb1;
+      font-size: 16px;
+      width: 100%;
+      
+    }
+  }
+  .btn {
+    height: 64px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 12px;
+    height: 100%;
+    min-width: 124px;
+    color: #f9f9f9;;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    background: #4171d6;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #5383e8;
+  }
+}

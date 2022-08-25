@@ -8,7 +8,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 let gameData = createSlice({
   name : 'gameData',
-  initialState : null,
+  initialState : '',
   reducers : {
     setGameData(state, action){
       return action.payload
@@ -26,6 +26,16 @@ let gameSort = createSlice({
   }
 })
 
+let commnets = createSlice({
+  name : 'comments',
+  initialState : '',
+  reducers : {
+    setComments(state, action){
+      return action.payload
+    }
+  }
+})
+
 
 //state를 다 만들었으니 이제 등록을 해야한다. 그럴때 쓰는 함수가 configureStore() 함수다.
 //createState()로 state를 만든후, export default configureStore()안 객체속 reducer : {} 가 있다.
@@ -34,9 +44,11 @@ let gameSort = createSlice({
 export default configureStore({
   reducer: { 
     gameData : gameData.reducer,
-    gameSort : gameSort.reducer
+    gameSort : gameSort.reducer,
+    comments : commnets.reducer,
   }
 })
 
 //state 수정함수 export 하기 다른곳에서도 사용할수있게 변수에 저장하여 export한다.
 export let { setGameData } = gameData.actions
+export let { setComments } = commnets.actions

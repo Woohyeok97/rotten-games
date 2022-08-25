@@ -1,0 +1,47 @@
+.finder {
+
+}
+.card {
+  flex: 0 0 30%;
+  flex-basis: 33%;
+  position: relative;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  .cardInfo {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute; left: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    transition: opacity 0.3s ease-in-out;
+    p {
+        margin: 0;
+    }
+  }
+  .cardInfo:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+.card:hover {
+  transform: scale(1.08);
+  box-sizing: border-box;
+}
+

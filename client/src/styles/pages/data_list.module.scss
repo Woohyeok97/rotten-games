@@ -1,0 +1,51 @@
+$애플회색 : #2d2d2d;
+
+
+.gameInfo {
+  display: flex;
+  justify-content: flex-start;
+
+  h3 { 
+    margin-bottom : 6px;
+    margin-top: 0;
+    color: salmon;
+   }
+  ul {
+    margin: 0;
+    li {
+      margin-top: 6px;
+    }
+  }
+}
+.gameImg {
+  flex-basis: 180px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btnWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 -6px;
+}
+.imgWrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+  border-top: 1px solid #515163;
+
+.imgItem {
+  flex-basis: 360px;
+  img {
+    width: 100%;
+    }
+  }
+}
+
+
+
+
+

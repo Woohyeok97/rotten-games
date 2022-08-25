@@ -1,0 +1,95 @@
+.detail {
+  h1,h2,h3,h4,h5 {
+    color: salmon;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+}
+.header {
+  background-size: cover;
+  min-height: 360px;
+  .container {
+    padding-top: 36px;
+    height: 100%;
+    // background: linear-gradient(180deg, transparent 60% , #1c1c1f );
+    background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); 
+  }
+
+  .innerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1080px;
+    margin: 0 auto;
+    .developer {
+      color: #9e9eb1;
+    }
+  }
+  .inner {
+    display: flex;
+    width: 1080px;
+    margin: 36px auto;
+
+    .imgBox {
+      width: 360px;
+      border: 1px solid #515163;
+      img {
+        width: 100%;
+      }
+    }
+    .infoBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-left: 24px;
+
+      div {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
+
+.tab {
+  background-color: #31313c;
+  border: 1px solid #1c1c1f;
+  box-sizing: border-box;
+
+  .tabInputBox {
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 0;
+
+    .tabInput {
+      display: none;
+    }
+    .tabInput + label {
+      height: 46px;
+      line-height: 42px;
+      padding: 0 18px;
+      margin: 8px 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+    }
+    .tabInput + label:hover {
+      background-color: #282830;
+    }
+    .tabInput:checked[type=radio] + label {
+      background-color: #515163;
+    }
+
+  }
+
+}
+
+.template {
+  width: 100%;
+  min-height: 480px;
+}
+
+.trailer {
+  
+}
