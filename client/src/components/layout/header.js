@@ -17,10 +17,7 @@ function Header() {
 
       <div className={styles.content}>
         <ul>
-          <li onClick={()=>{ navigate('/managerspage') }} style={{ color:'salmon' }}>관리자 페이지</li>
-          <li id={styles.separator}></li>
-          <li onClick={()=>{ navigate('/datalist') }}>데이터 수정 & 삭제</li>
-          <li onClick={()=>{ navigate('/upload') }}>데이터 업로드</li>
+          <li onClick={()=>{ navigate('/datalist') }} style={{ color:'salmon' }}>관리자 페이지</li>
           <li id={styles.separator}></li>
           <li onClick={()=>{ navigate('/finder') }}>모든게임</li>
           <li id={styles.separator}></li>

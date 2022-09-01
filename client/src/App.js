@@ -7,6 +7,8 @@ import axios from 'axios';
 
 //컴포넌트
 import Layout from './components/layout/layout';
+import ManagersPageLayout from './components/layout/managerspagelayout';
+
 import Main from './pages/main'
 import Finder from './pages/finder'
 import Detail from './pages/detail';
@@ -23,7 +25,6 @@ import { setGameData } from "./store.js"
 
 
 function App() {
-
 //useEffect 함수
 useEffect(()=>{
   axios.get('http://localhost:3001/requireGameData')
@@ -36,20 +37,19 @@ const gameData = useSelector((state)=>state.gameData)
 
 return (
   <div className="Root">
-  <Layout>
+
   { gameData ?
     <Routes>
-      <Route path='/' element={ <Main/> }/> 
-      <Route path='/finder' element={ <Finder/> }/>
-      <Route path='/detail/:id' element={ <Detail/> }/>
-      <Route path='/datalist/' element={ <DataList/> }/>
-      <Route path='/edit/:id/' element={ <Edit/> }/>
-      <Route path='/login' element={ <Login/> }/>
-      <Route path='/upload' element={ <Upload/> }/>
-      <Route path='/managerspage' element={ <ManagersPage/> }/>
-    </Routes> 
+      <Route path='/' element={ <Layout> <Main/> </Layout> }/> 
+      <Route path='/finder' element={ <Layout> <Finder/> </Layout> }/>
+      <Route path='/detail/:id' element={ <Layout> <Detail/> </Layout> }/>
+      <Route path='/datalist' element={ <ManagersPageLayout><DataList/></ManagersPageLayout> }/>
+      <Route path='/edit/:id' element={ <ManagersPageLayout><Edit/></ManagersPageLayout> }/>
+      <Route path='/login' element={ <Layout> <Login/> </Layout> }/>
+      <Route path='/upload' element={ <ManagersPageLayout><Upload/></ManagersPageLayout>}/>
+    </Routes>
       : null }
-  </Layout>
+      
   </div>  
   )
 }

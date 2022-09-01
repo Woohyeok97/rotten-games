@@ -6,15 +6,15 @@ import axios from "axios";
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 //Custom Hooks
-import useSetData from "../hooks/common/usesetdata";
+import useSetImage from "../hooks/common/usesetimage";
 //CSS
 import styles from '../styles/pages/data_list.module.scss'
 //Common Components
 import Navigater from "../components/navigater";
 import { DropButton, PlatformSmallBox, TagBox } from "../components/assets";
 //Layout Components
-import Template from "../components/layout/template";
 import TemplateColumn from "../components/layout/templateColumn";
+
 
 
 
@@ -66,7 +66,8 @@ function DataCard({ item }) {
 
 
 function Images({ item, imageState }) {
-  const { 게임이미지, 이미지불러오기 } = useSetData(item)
+  const { 게임이미지, 이미지불러오기 } = useSetImage(item)
+  
   
   useEffect(()=>{
     이미지불러오기()

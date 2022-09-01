@@ -1,0 +1,34 @@
+.managerspage {
+  .headerBox {
+    height: 80px;
+
+    .header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+  }
+  
+}
+
+.main {
+  position: relative;
+  display: flex;
+  .menu {
+    width: 20vw;
+    position: fixed;
+  }
+  .contentBox{
+    position: absolute;
+    background-color: #1c1c1f;
+    left: 20vw;
+    width: 80vw;
+    
+
+    .content {
+      margin: 48px;
+      min-height: 80vh
+    }
+  }
+}
