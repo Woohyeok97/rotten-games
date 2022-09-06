@@ -8,7 +8,7 @@ import Template from "./layout/template";
 import NullComponent from "./nullcomponent";
 
 
-import { setComments } from '../store'
+import { setComments } from '../Store'
 
 function Comments({ item }){
   const dispatch = useDispatch()

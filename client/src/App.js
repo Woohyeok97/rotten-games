@@ -16,12 +16,13 @@ import Login from './pages/login';
 import Upload from './pages/upload';
 import DataList from './pages/data_list';
 import Edit from './pages/edit';
-import ManagersPage from './pages/managerspage'
+import Fail from './pages/fail';
+
 //CSS
 import './styles/common.scss';
 
 //Redux State 변경함수
-import { setGameData } from "./store.js"
+import { setGameData } from "./Store/index"
 
 
 function App() {
@@ -46,10 +47,11 @@ return (
       <Route path='/datalist' element={ <ManagersPageLayout><DataList/></ManagersPageLayout> }/>
       <Route path='/edit/:id' element={ <ManagersPageLayout><Edit/></ManagersPageLayout> }/>
       <Route path='/login' element={ <Layout> <Login/> </Layout> }/>
+      <Route path='/fail' element={ <Layout> <Fail/> </Layout> }/>
       <Route path='/upload' element={ <ManagersPageLayout><Upload/></ManagersPageLayout>}/>
     </Routes>
       : null }
-      
+
   </div>  
   )
 }

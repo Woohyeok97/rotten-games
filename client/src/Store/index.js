@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
+import tokenReducer from './Auth.js'
 
 //state 생성하기
 //createSlice 는 useState처럼 state를 만들어주는 함수다
@@ -46,6 +47,7 @@ export default configureStore({
     gameData : gameData.reducer,
     gameSort : gameSort.reducer,
     comments : commnets.reducer,
+    authToken : tokenReducer,
   }
 })
 
