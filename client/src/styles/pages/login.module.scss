@@ -1,45 +1,52 @@
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+}
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    margin: 48px auto;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            height: 48px;
+            padding: 4px 12px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 400;
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+            box-sizing: border-box;
+            color: #f9f9f9;
+            background-color: #31313c;
+        }
+    }
+
+    button {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 4px 12px;
+        height: 48px;
+        min-width: 64px;
+        color: #f9f9f9;;
+        border: 1px solid transparent;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        background: #4171d6;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #5383e8;
+    }
+
 }
 
-.loginForm form {
-  display: flex;
-  flex-direction: column;
-  min-width: 380px;
-  margin: 48px auto;
-
-  .input {
-    height: 48px;
-    padding: 4px 12px;
-    margin-bottom: 24px;
-    font-size: 16px;
-    font-weight: 400;
-    border: 1px solid transparent;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    color: #f9f9f9;
-    background-color: #282830;
-  }
-  
+.OAuth {
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    margin: 0 auto;
 }
-.btn {
-  font-size: 16px;
-  font-weight: 400;
-  padding: 4px 12px;
-  height: 48px;
-  min-width: 64px;
-  color: #f9f9f9;;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  box-sizing: border-box;
-  background: #4171d6;
-  cursor: pointer;
-}
-.btn:hover {
-  background-color: #5383e8;;
-}
-
-
-
