@@ -8,12 +8,13 @@ import Template from "./layout/template";
 import NullComponent from "./nullcomponent";
 
 
-import { setComments } from '../store'
+import { setComments } from '../Store/comment'
 
 function Comments({ item }){
+
   const dispatch = useDispatch()
   const comments = useSelector((state)=>state.comments)
-
+  
   useEffect(()=>{
     axios.get(`http://localhost:3001/loadComment/${item._id}`)
     .then((result)=>{ dispatch(setComments(result.data)) })

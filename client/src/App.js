@@ -21,7 +21,7 @@ import MyPage from './pages/mypage';
 //CSS
 import './styles/common.scss';
 //Redux State 변경함수
-import { setGameData } from "./store.js"
+import { setGameData } from "./Store/gamedata.js"
 
 
 function App() {
@@ -34,6 +34,7 @@ useEffect(()=>{
 
 let dispatech = useDispatch()
 const gameData = useSelector((state)=>state.gameData)
+
 
 return (
   <div className="Root">
