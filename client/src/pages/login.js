@@ -1,12 +1,15 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 // CSS
 import styles from '../styles/pages/login.module.scss'
 //Common Components
 import NullComponent from '../components/nullcomponent';
-
+//redux
+import { SET_TOKEN } from '../Store/JWTtoken';
 
 function Login(){
   return(
@@ -20,6 +23,10 @@ function Login(){
 
 function LoginForm() {
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const JWTtoken = useSelector((state)=>state.JWTtoken)
+
   const [user, setUser] = useState({
     아이디 : '',
     비밀번호 : ''
@@ -27,9 +34,16 @@ function LoginForm() {
 
   const userLogin = ()=> {
     axios.post('http://localhost:3001/login', user, { withCredentials : true })
-    .then((result)=>{ console.log(result) })
+    .then((result)=>{ dispatch(SET_TOKEN(result.data.token)) })
     .catch((에러)=>{ console.log('에러발생', 에러) })
   }
+
+  const move = ()=>{
+    
+  }
+
+  
+
 
   return(
     <div className={ styles.loginForm }>
@@ -38,7 +52,7 @@ function LoginForm() {
         <input type="text" onChange={(e)=>{ setUser({...user, 아이디 : e.target.value}) }} placeholder="이메일"/>
         <input type="text" onChange={(e)=>{ setUser({...user, 비밀번호 : e.target.value}) }} placeholder="비밀번호"/>
       </form>
-      <button onClick={()=>{ userLogin() }}>로그인</button>
+      <button onClick={()=>{ userLogin(); navigate('/mypage') }}>로그인</button>
     </div>
   )
 }

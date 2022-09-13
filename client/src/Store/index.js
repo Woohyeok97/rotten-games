@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+
+//states
 import gameData from "./gamedata";
 import gameSort from "./gamesort";
 import comments from "./comment";
+import JWTtoken from "./JWTtoken";
 
 
 
@@ -14,5 +17,6 @@ export default configureStore({
         gameData : gameData,
         gameSort : gameSort,
         comments : comments,
+        JWTtoken : JWTtoken,
     }
 })

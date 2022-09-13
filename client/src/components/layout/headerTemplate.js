@@ -6,7 +6,7 @@ import styles from '../../styles/layout/headerTemplate.module.scss'
 function HeaderTemplate({children}) {
   return (
     <section className={styles.template}>
-    {children}
+    { children }
     </section>
   )
 }

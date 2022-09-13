@@ -9,6 +9,7 @@ import axios from 'axios';
 import Layout from './components/layout/layout';
 import ManagersPageLayout from './components/layout/managerspagelayout';
 
+//pages
 import Main from './pages/main'
 import Finder from './pages/finder'
 import Detail from './pages/detail';
@@ -17,14 +18,17 @@ import Upload from './pages/upload';
 import DataList from './pages/data_list';
 import Edit from './pages/edit';
 import MyPage from './pages/mypage';
-
+import SignUp from './pages/signup';
+import NullComponent from './components/nullcomponent';
 //CSS
 import './styles/common.scss';
 //Redux State 변경함수
 import { setGameData } from "./Store/gamedata.js"
 
 
+
 function App() {
+
 //useEffect 함수
 useEffect(()=>{
   axios.get('http://localhost:3001/requireGameData')
@@ -34,6 +38,9 @@ useEffect(()=>{
 
 let dispatech = useDispatch()
 const gameData = useSelector((state)=>state.gameData)
+const JWTtoken = useSelector((state)=>state.JWTtoken)
+
+
 
 
 return (
@@ -47,7 +54,8 @@ return (
       <Route path='/datalist' element={ <ManagersPageLayout><DataList/></ManagersPageLayout> }/>
       <Route path='/edit/:id' element={ <ManagersPageLayout><Edit/></ManagersPageLayout> }/>
       <Route path='/login' element={ <Layout> <Login/> </Layout> }/>
-      <Route path='/mypage' element={ <Layout> <MyPage/> </Layout> }/>
+      <Route path='/signup' element={ <Layout> <SignUp/> </Layout> }/>
+      <Route path='/mypage' element={ JWTtoken ? <Layout> <MyPage/> </Layout> : <Layout> <NullComponent/> </Layout> } />
       <Route path='/upload' element={ <ManagersPageLayout><Upload/></ManagersPageLayout>}/>
     </Routes>
       : null }
