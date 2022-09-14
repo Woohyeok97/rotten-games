@@ -35,14 +35,14 @@ function middle(요청, 응답, next) {
     })
 }
 
-function auth(요청, 응답, next){
- const accessToken = 요청.headers.authorization.split('Bearer ')[1]
- jwt.verify(accessToken, 'topSecretKey', (err, decoded)=>{
-    if(err) return 응답.send('에.러')
-    db.collection('login').findOne({ _id : ObjectId(decoded._id) }, (에러, 결과)=>{
-        응답.send(결과)
-    })
- })
-}
+// function auth(요청, 응답, next){
+//  const accessToken = 요청.headers.authorization.split('Bearer ')[1]
+//  jwt.verify(accessToken, 'topSecretKey', (err, decoded)=>{
+//     if(err) return 응답.send('에.러')
+//     db.collection('login').findOne({ _id : ObjectId(decoded._id) }, (에러, 결과)=>{
+//         응답.send(결과)
+//     })
+//  })
+// }
 
 module.exports = router
