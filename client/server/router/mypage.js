@@ -17,6 +17,7 @@ MongoClient.connect("mongodb://qordngur156:662qor663@cluster0-shard-00-00.yu0ka.
 
 
 
+
 router.get('/myInfo',middle, (요청, 응답)=> {
     응답.send()
 })
@@ -24,29 +25,24 @@ router.get('/myInfo',middle, (요청, 응답)=> {
 //토큰이 DB에 있는 데이터와 맞는지 중간에 검사하는 미들웨어~
 //이걸 모듈화하면 다른 요청에도 쉽게 써먹을수 있겠지??
 function middle(요청, 응답, next) {
-    let token = 요청.cookies.x_auth;//이것이 우리가 쿠키에 저장한 JWT 토큰
+    const accessToken = 요청.headers.authorization.split('Bearer ')[1]
     //이제 토큰을 jwt.verify()함수로 까봐서(decoded) DB에 있는 _id 와 일치하면 프론트한테 DB데이터를 줄거임!
-    jwt.verify(token, 'secretToken', (err, decoded)=>{ //여기서 decoded 는 _id 를 말하는듯, (복호화 - 암호화전 상태)
+    jwt.verify(accessToken, 'topSecretKey', (err, decoded)=>{ //여기서 decoded 는 _id 를 말하는듯, (복호화 - 암호화전 상태)
         if(err) return 응답.send('에러~')
-        db.collection('login').findOne({ _id : ObjectId(decoded) }, (에러, 결과)=>{
+        db.collection('login').findOne({ _id : ObjectId(decoded._id) }, (에러, 결과)=>{
             응답.send(결과)
         })
     })
 }
 
-
-
-// const jwtMiddleware = async (요청, 응답, next)=>{
-
-//     let token = 요청.cookies.x_auth;
-
-//     jwt.verify(token, 'sceretToken', function(err, decoded){
-//         if(err) return 응답.send({ message : '토큰인증 실패잖슴~' })
-
-//         db.collection('login').findOne({ _id : decoded }, (에러, 결과)=>{
-//             응답.send(결과)
-//         })
-//     })
-// }
+function auth(요청, 응답, next){
+ const accessToken = 요청.headers.authorization.split('Bearer ')[1]
+ jwt.verify(accessToken, 'topSecretKey', (err, decoded)=>{
+    if(err) return 응답.send('에.러')
+    db.collection('login').findOne({ _id : ObjectId(decoded._id) }, (에러, 결과)=>{
+        응답.send(결과)
+    })
+ })
+}
 
 module.exports = router

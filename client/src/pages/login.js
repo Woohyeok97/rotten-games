@@ -22,7 +22,6 @@ function Login(){
 
 
 function LoginForm() {
-
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const JWTtoken = useSelector((state)=>state.JWTtoken)
@@ -33,16 +32,12 @@ function LoginForm() {
   })
 
   const userLogin = ()=> {
-    axios.post('http://localhost:3001/login', user, { withCredentials : true })
-    .then((result)=>{ dispatch(SET_TOKEN(result.data.token)) })
+    axios.post('http://localhost:3001/login', user, { withCredentials : true }) //이게 뭔지 모르겠지만..
+    .then((result)=>{ console.log(result); dispatch(SET_TOKEN(result.data.accessToken));})
     .catch((에러)=>{ console.log('에러발생', 에러) })
   }
 
-  const move = ()=>{
-    
-  }
 
-  
 
 
   return(
@@ -52,7 +47,7 @@ function LoginForm() {
         <input type="text" onChange={(e)=>{ setUser({...user, 아이디 : e.target.value}) }} placeholder="이메일"/>
         <input type="text" onChange={(e)=>{ setUser({...user, 비밀번호 : e.target.value}) }} placeholder="비밀번호"/>
       </form>
-      <button onClick={()=>{ userLogin(); navigate('/mypage') }}>로그인</button>
+      <button onClick={()=>{ userLogin() }}>로그인</button>
     </div>
   )
 }

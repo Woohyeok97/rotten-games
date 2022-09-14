@@ -1,20 +1,31 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 
 
 
 function MyPage() {
 
+  // const [userData, setUserData] = useState('')
+
+  // useEffect(()=>{
+  //   axios.get('http://localhost:3001/myInfo' ,{ withCredentials : true })
+  //   //아니 url 옆에 저게 뭔지는 모르겠는데 저게없으면 요청.cookies 가 안됨;;
+  //   .then((result)=>{ 
+  //     console.log('님 정보가 이거죠?', result.data);
+  //     setUserData(...userData, result.data)
+  //     if(!result.data) return console.log('토큰인증실패여')
+  //   })
+  //   .catch((에러)=>{ console.log('에러발생했잖슴!', 에러) })
+  // },[])
+
   const [userData, setUserData] = useState('')
+  const JWTtoken = useSelector((state)=>state.JWTtoken)
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/myInfo' ,{ withCredentials : true })
-    //아니 url 옆에 저게 뭔지는 모르겠는데 저게없으면 요청.cookies 가 안됨;;
-    .then((result)=>{ 
-      console.log('님 정보가 이거죠?', result.data);
-      setUserData(...userData, result.data)
-      if(!result.data) return console.log('토큰인증실패여')
-    })
+    axios.get('http://localhost:3001/myInfo', { headers : { Authorization : `Bearer ${JWTtoken}` } })
+    .then((result)=>{ console.log('님 정보가 이거죠?', result.data);setUserData(...userData, result.data) })
     .catch((에러)=>{ console.log('에러발생했잖슴!', 에러) })
   },[])
 

@@ -21,10 +21,13 @@ const jwt = require('jsonwebtoken')
 router.post('/login', (요청, 응답)=>{
   db.collection('login').findOne({ id : 요청.body.아이디 }, (에러, 결과)=>{
     if(!결과) return 응답.send('없는 아이디 인디요?');
+
     if(결과.pw == 요청.body.비밀번호) {
-      let token = jwt.sign(결과._id.toHexString(), 'secretToken')
+  
+      let accessToken = jwt.sign({ id : 결과.id }, 'topSecretKey', { expiresIn: '1h' })
+      let refreshToken = jwt.sign({}, 'topSecretKey', { expiresIn: '14d' })
+      return 응답.cookie('refresh_token', refreshToken).send({ message : '토큰받아라' , accessToken : accessToken})
       // return 응답.cookie("x_auth", token).send({ message : '쿠키를 확인해보세요!', token : token })
-      응답.cookie("x_auth", token).send({ message : '쿠키에 토큰저장성공!', token : token})
     } else {
       return 응답.send('비번이 틀린뎁쇼?')
     }
