@@ -34,12 +34,9 @@
 .platformBox {
   display: flex;
   align-items: center;
-
   .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 148px;
+    min-width: 124px;
+    text-align: center;
     font-size: large;
     padding: 4px 12px;
     margin-right: 24px;

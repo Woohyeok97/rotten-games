@@ -1,14 +1,21 @@
 /* eslint-disable */
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import io from 'socket.io-client';
+const socket = io('http://localhost:3001', { transports: ["websocket"] });
 
+
+
+//프론트에서 sockcet을 사용하기 위해 io 모듈을 import
+
+//CSS
 import styles from '../styles/components/comments.module.scss'
-import Template from "./layout/template";
 import NullComponent from "./nullcomponent";
 
-
 import { setComments } from '../Store/comment'
+
+
 
 function Comments({ item }){
 
@@ -20,7 +27,6 @@ function Comments({ item }){
     .then((result)=>{ dispatch(setComments(result.data)) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
   },[])
-
 
 
   return(
@@ -54,6 +60,7 @@ function Comments({ item }){
 }
 
 
+
 function CommentBox({ item }) {
 
   const 추천하기 = ()=>{
@@ -77,10 +84,11 @@ function CommentBox({ item }) {
 
       <div className={ styles.btnBox }>
         <div className={ styles.btnWrap }>
-          <button className="btn" onClick={()=>{ 추천하기() }}>추천</button>
+          <button className="btn" onClick={()=>{ }}>추천</button>
           <button className="btnRed">삭제</button>
         </div>
         <span className="btnSmall">신고</span>
+        
       </div>
       
     </li>

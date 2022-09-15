@@ -19,8 +19,7 @@ export function DropButton({ id, set, value }) {
 export function PlatformBox({ array }) {
   return(
     <div className={ styles.platformBox }>
-      { array.map((a, i)=>{ return <div className={ styles.item }>
-        <span>⎈</span><div>{ a }</div></div> }) }
+      { array.map((a, i)=>{ return <div className={ styles.item }>{ a }</div> }) }
     </div>
   )
 }

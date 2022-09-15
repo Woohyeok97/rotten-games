@@ -22,6 +22,7 @@ function Detail() {
   const gameData = useSelector((state)=>state.gameData)
   const { id } = useParams();
   const item = gameData.find((a)=> a.title == id )
+
   const { 게임이미지, 이미지불러오기 } = useSetImage(item)
   const [ 현재UI, 현재UI변경 ] = useState('trailer')
 
@@ -30,7 +31,7 @@ function Detail() {
   }, [])
 
   return (
-    <section className={ styles.detail } style={{ marginTop:'0px' }}>
+    <section className={ styles.detail } >
       <Header item={item} 게임이미지={게임이미지}/>
       <Tab 현재UI변경={현재UI변경} />
       <ShowUI 현재UI={현재UI} item={item} 게임이미지={게임이미지}/>
@@ -40,7 +41,9 @@ function Detail() {
 
 
 function Header({ item, 게임이미지 }) {
-  const background = { backgroundImage : `url(/image/${item.title}/${게임이미지.image_background})`}
+  const imageURL = encodeURI(`url(/image/${item.title}/${게임이미지.image_background})`)
+  //encodeURL() 메소드를 쓰면 URL에 공백이나 특수문자가 있어도 되는건가?되긴되네
+  const background = { backgroundImage : imageURL }
 
   return(
     <div className={ styles.header } style={ background }>
