@@ -1,105 +1,23 @@
 .comments {
   h3 {
-    margin: 0;
+    margin: 6px 0px 36px 4px;
   }
 }
 .header {
   background-color: #31313c;
+  padding: 12px;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-sizing: border-box;
-  margin-bottom: 24px;
-  .inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 24px;
-  }
 }
-.commentsInputBox {
-  display: flex;
-  .commentsInput {
-    display: none;
-  }
-  .commentsInput + label {
-    height: 46px;
-    line-height: 42px;
-    padding: 0 18px;
-    margin: 8px 4px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    box-sizing: border-box;
-  }
-  .commentsInput + label:hover {
-    background-color: #282830;
-  }
-  .commentsInput:checked[type=radio] + label {
-    background-color: #515163;
-  }
-}
-
-.userComments {
-  margin-top: 48px;
-  ul { padding: 0; }
-
-  .inner {
-    display: flex;
-    justify-content: space-between;
-    padding: 24px;
-    margin-top: 16px;
-    border: 1px solid #1c1c1f;
-    border-radius: 0.25rem;
-    box-sizing: border-box;
-  }
-}
-.commentBox {
-
-  .userInfo {
-    display: flex;
-    color: #9e9eb1;
-    .name {
-
-    }
-    .separator {
-      background: currentColor;
-      color: #9e9eb1;
-      height: 16px;
-      width: 2px;
-      margin: auto 17px;
-      padding: 0;
-    }
-    .date {
-
-    }
-    .recommend {
-      color: salmon;
-    }
-  }
-
-  .comment {
-
-  }
-}
-.btnBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  .btnWrap {
-    display: flex;
-    justify-content: space-between;
-    margin-right: -16px;
-  }
-}
-
 
 .commentWrite {
   display: flex;
   height: 124px;
   padding: 12px;
+  margin: 12px 0;
   justify-content: space-between;
-  background-color: #1c1c1f;
+  background-color: #282830;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-sizing: border-box;
@@ -111,7 +29,7 @@
       margin-bottom: 6px;
     }
     .textarea {
-      background-color: #1c1c1f;
+      background-color: #282830;
       color: #9e9eb1;
       font-size: 16px;
       width: 100%;
@@ -136,3 +54,122 @@
     background-color: #5383e8;
   }
 }
+
+.commentsInputBox {
+  display: flex;
+  .commentsInput {
+    display: none;
+  }
+  .commentsInput + label {
+    height: 46px;
+    line-height: 42px;
+    padding: 0 18px;
+    margin: 8px 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+  }
+  .commentsInput + label:hover {
+    background-color: #282830;
+  }
+  .commentsInput:checked[type=radio] + label {
+    background-color: #515163;
+  }
+}
+
+.userComments {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #31313c;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+
+  ul { padding: 0; margin: 0; }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #515163;
+    padding: 12px;
+  }
+}
+.commentBox {
+  .userInfo {
+    display: flex;
+    color: #9e9eb1;
+    .name {
+
+    }
+    .separator {
+      background: currentColor;
+      color: #9e9eb1;
+      height: 16px;
+      width: 2px;
+      margin: auto 17px;
+      padding: 0;
+    }
+    .date {
+
+    }
+    .recommend {
+      color: salmon;
+    }
+  }
+
+  .comment {
+    
+  }
+  .recommendBtn {
+    padding: 4px 6px;
+    margin: 0;
+    color: salmon;
+    font-size: large;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    span {
+      margin-right: 4px;
+    }
+  }
+  .recommendBtn:hover {
+    color: rgb(249, 173, 164)
+  }
+}
+
+
+
+.더보기버튼 {
+  width: 100%;
+  margin-top: 12px;
+  color: #9e9eb1;
+  font-size: 16px;
+  font-weight: 400;
+  height: 42px;
+  cursor: pointer;
+  background-color: #424254;
+  border: 1px solid transparent;
+  border-top: none;
+  border-radius: 0.25rem;
+}
+
+.더보기버튼:hover {
+  background-color: #515163;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  .btnWrap {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -16px;
+  }
+}
+
+

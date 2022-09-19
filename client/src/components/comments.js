@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import io from 'socket.io-client';
-const socket = io('http://localhost:3001', { transports: ["websocket"] });
-
 
 
 //프론트에서 sockcet을 사용하기 위해 io 모듈을 import
@@ -31,70 +29,34 @@ function Comments({ item }){
 
   return(
     <div className={ styles.comments }>
-      
+    
       <div className={ styles.header }>
-        <div className={ styles.inner }>
           <h3>{item.title} 유저코멘트 </h3>
-          <div className={ styles.commentsInputBox }>
-            <input type="radio" id="추천순" className={ styles.commentsInput } name="추천순&최신순"
-            defaultChecked="checked"/>
-            <label for="추천순">추천순</label>
-
-            <input type="radio" id="최신순" className={ styles.commentsInput } name="추천순&최신순"/>
-            <label for="최신순">최신순</label>
-          </div>
-        </div>  
+          <CommentWrite item={item}/>
       </div>
      
+
       <div className={ styles.userComments }>
-        <ul>
-        { comments.length ? comments.map((a, i)=>{ return <CommentBox item={a}/> }) 
-        : <NullComponent/> }
-        </ul>
-      </div>
+
+        <div className={ styles.commentsInputBox }>
+          <input type="radio" id="추천순" className={ styles.commentsInput } name="추천순&최신순"
+          defaultChecked="checked"/>
+          <label for="추천순">추천순</label>
+          <input type="radio" id="최신순" className={ styles.commentsInput } name="추천순&최신순"/>
+          <label for="최신순">최신순</label>
+        </div>
       
-      <CommentWrite item={item}/>
+        <ul>
+          { comments.length ? comments.map((a, i)=>{ return <CommentBox item={a}/> }) 
+          : <NullComponent/> }
+        </ul>
+
+        <button className={ styles.더보기버튼 }>더보기</button>
+      </div>
 
     </div>
   )
 }
-
-
-
-function CommentBox({ item }) {
-
-  const 추천하기 = ()=>{
-    axios.get(`http://localhost:3001/recommend/${item._id}`)
-    .then((result)=>{ console.log('추천!') })
-    .catch((에러)=>{ console.log('추천하기 실패~!', 에러) })
-  }
-
-  return(
-    <li className={ styles.inner }>
-      <div className={ styles.commentBox }>
-        <ul className={ styles.userInfo }>
-          <li className={ styles.name }>{ item.userName }</li>
-          <li className={ styles.separator }></li>
-          <li className={ styles.date }>{ item.date }</li>
-          <li className={ styles.separator }></li>
-          <li className={ styles.recommend }>{ item.recommend } 추천 ☻</li>
-        </ul>
-        <p className={ styles.comment }>{ item.content }</p>
-      </div>
-
-      <div className={ styles.btnBox }>
-        <div className={ styles.btnWrap }>
-          <button className="btn" onClick={()=>{ }}>추천</button>
-          <button className="btnRed">삭제</button>
-        </div>
-        <span className="btnSmall">신고</span>
-        
-      </div>
-      
-    </li>
-  )
-}
-
 
 
 function CommentWrite({ item }) {
@@ -123,5 +85,70 @@ function CommentWrite({ item }) {
     </div>
   )
 }
+
+
+function CommentBox({ item }) {
+
+  const 추천하기 = ()=>{
+    axios.get(`http://localhost:3001/recommend/${item._id}`)
+    .then((result)=>{ console.log('추천!') })
+    .catch((에러)=>{ console.log('추천하기 실패~!', 에러) })
+  }
+
+  return(
+    // <li className={ styles.inner }>
+    //   <div className={ styles.commentBox }>
+    //     <ul className={ styles.userInfo }>
+    //       <li className={ styles.name }>{ item.userName }</li>
+    //       <li className={ styles.separator }></li>
+    //       <li className={ styles.date }>{ item.date }</li>
+    //       <li className={ styles.separator }></li>
+    //       <li className={ styles.recommend }>{ item.recommend } 추천 ☻</li>
+    //     </ul>
+    //     <p className={ styles.comment }>{ item.content }</p>
+    //   </div>
+
+    //   <div className={ styles.btnBox }>
+    //     <div className={ styles.btnWrap }>
+    //       <button className="btn" onClick={()=>{ }}>추천</button>
+    //       <button className="btnRed">삭제</button>
+    //     </div>
+    //     <span className="btnSmall">신고</span>
+        
+    //   </div>
+      
+    // </li>
+    <li className={ styles.inner }>
+      <div className={ styles.commentBox }>
+        <ul className={ styles.userInfo }>
+          <li className={ styles.name }>{ item.userName }</li>          
+          <li className={ styles.separator }></li>
+          <li className={ styles.date }>{ item.date }</li>
+          <li className={ styles.separator }></li>
+          <li className={ styles.score }>⭐️⭐️⭐️⭐️⭐️</li>
+        </ul>
+
+        <p className={ styles.comment }>{ item.content }</p>
+
+        <button className={ styles.recommendBtn }>
+          <span>☻</span>
+          <span>{ item.recommend }</span>
+        </button>
+
+      </div>
+
+      <div className={ styles.btnBox }>
+        <div className={ styles.btnWrap }>
+          <button className="btn" onClick={()=>{ }}>추천</button>
+          <button className="btnRed">삭제</button>
+        </div>
+        <span className="btnSmall">신고</span>
+        
+      </div>
+      
+    </li>
+  )
+}
+
 
 export default Comments
