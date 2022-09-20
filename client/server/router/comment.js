@@ -28,11 +28,36 @@ router.post('/commentUpload', (요청, 응답)=>{
   })
 })
 
+let recommend = 0
+
+// router.get('/loadComment/:id', (요청, 응답)=>{
+//   db.collection('game_comments').find({ parent : 요청.params.id }).toArray((에러, 결과)=>{
+//     응답.send(결과)
+//   })
+// })
+
 router.get('/loadComment/:id', (요청, 응답)=>{
-  db.collection('game_comments').find({ parent : 요청.params.id }).toArray((에러, 결과)=>{
+  db.collection('game_comments')
+  .find({ $and : [{ parent : 요청.params.id }]})
+  .sort({ recommend : -1 })
+  .skip(recommend)
+  .limit(3)
+  .toArray((에러, 결과)=>{
+    recommend = recommend + 3
     응답.send(결과)
   })
 })
+
+router.post('/reset', (요청, 응답)=>{
+  recommend = 0;
+  응답.send()
+})
+//db.컬렉션명.find()
+//쿼리문으로 DB에서 조건검색을 해야한다. 무슨 조건을줄까?
+// 1. 코멘트콜렉션에서 parent 가 params.id와 일치하는 게시물 중에서
+// 2. 추천수 높은 순으로 3개 를 가져옴
+// 3. 3개중에 추천수가 가장낮은 게시물의 추천수를 변수에 저장함(let)
+// 4. 그래서 다음에 요청을 할때 변수에 저장한 추천수보다는 낮은 게시물 3개를 추천높은순으로 가져옴 -> 그리고 변수수정
 
 router.get('/recommend/:id', (요청, 응답)=>{
   db.collection('game_comments').updateOne({ _id : ObjectId(요청.params.id) }, { $inc : {recommend : 1}}),

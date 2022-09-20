@@ -11,19 +11,31 @@ import io from 'socket.io-client';
 import styles from '../styles/components/comments.module.scss'
 import NullComponent from "./nullcomponent";
 
-import { setComments } from '../Store/comment'
+import { initialComments } from '../Store/comment'
+import { moreComments } from '../Store/comment'
 
 
 
 function Comments({ item }){
 
   const dispatch = useDispatch()
-  const comments = useSelector((state)=>state.comments)
-  
+  const comments = useSelector((state)=>state.comments) //요놈은 array 가 맞습니다.
+
+  const 코멘트더보기 = ()=>{
+    axios.get(`http://localhost:3001/loadComment/${item._id}`)
+    .then((result)=>{ dispatch( moreComments(result.data) ) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+  }
+
   useEffect(()=>{
     axios.get(`http://localhost:3001/loadComment/${item._id}`)
-    .then((result)=>{ dispatch(setComments(result.data)) })
+    .then((result)=>{ dispatch(initialComments(result.data)) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+
+    return ()=>{ axios.post(`http://localhost:3001/reset`)
+    .then((result)=>{ console.log(result) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+    }
   },[])
 
 
@@ -46,12 +58,20 @@ function Comments({ item }){
           <label for="최신순">최신순</label>
         </div>
       
-        <ul>
+        {/* <ul>
           { comments.length ? comments.map((a, i)=>{ return <CommentBox item={a}/> }) 
+          : <NullComponent/> }
+        </ul> */}
+
+        <ul>
+          { comments.length 
+          ? comments.map((a, i)=>{ 
+            return <CommentBox item={a}/> 
+          }) 
           : <NullComponent/> }
         </ul>
 
-        <button className={ styles.더보기버튼 }>더보기</button>
+        <button className={ styles.더보기버튼 } onClick={()=>{ 코멘트더보기() }}>더보기</button>
       </div>
 
     </div>
@@ -68,6 +88,7 @@ function CommentWrite({ item }) {
   const postComment = ()=>{
     axios.post(`http://localhost:3001/commentUpload`, 코멘트)
     .then((result)=>{ window.location.replace(`/detail/${item.title}`); })
+    //나중에는 작성한 코멘트가 바로 프론트에 출력되게 해보자
     .catch((에러)=>{ console.log('에러발생했잖슴~', 에러) })
   }
 

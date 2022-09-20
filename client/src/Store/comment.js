@@ -4,12 +4,16 @@ let comments = createSlice({
     name : 'comments',
     initialState : '',
     reducers : {
-      setComments(state, action){
+      initialComments(state, action){
         return action.payload
+      },
+      moreComments(state, action){
+        return [...state, ...action.payload]
       }
     }
   })
 
-export let { setComments } = comments.actions
+export let { initialComments } = comments.actions
+export let { moreComments } = comments.actions
 
 export default comments.reducer;
