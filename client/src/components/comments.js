@@ -20,25 +20,35 @@ function Comments({ item }){
 
   const dispatch = useDispatch()
   const comments = useSelector((state)=>state.comments) //요놈은 array 가 맞습니다.
-
-  const 코멘트더보기 = ()=>{
-    axios.get(`http://localhost:3001/loadComment/${item._id}`)
-    .then((result)=>{ dispatch( moreComments(result.data) ) })
-    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
-  }
+  const [count, setCount] = useState(0)
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/loadComment/${item._id}`)
+    axios.get(`http://localhost:3001/firstload/${item._id}`)
     .then((result)=>{ dispatch(initialComments(result.data)) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
 
     return ()=>{ axios.post(`http://localhost:3001/reset`)
     .then((result)=>{ console.log(result) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
-    }
+    console.log('언마운트')
+    };
   },[])
 
+  const 코멘트더보기 = ()=>{
+    axios.get(`http://localhost:3001/moreload/${item._id}`)
+    .then((result)=>{ dispatch( moreComments(result.data) ) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+  }
 
+  //새로고침할때 언마운트 처리가 안되서 작동이 안되는것같은데..
+
+  // useEffect(()=>{
+  //   console.log('마운트')
+  //   return ()=>{ console.log('언마운트') }
+  // },[])
+  
+  
+  
   return(
     <div className={ styles.comments }>
     

@@ -30,24 +30,33 @@ router.post('/commentUpload', (요청, 응답)=>{
 
 let recommend = 0
 
-// router.get('/loadComment/:id', (요청, 응답)=>{
-//   db.collection('game_comments').find({ parent : 요청.params.id }).toArray((에러, 결과)=>{
-//     응답.send(결과)
-//   })
-// })
-
-router.get('/loadComment/:id', (요청, 응답)=>{
+router.get('/firstload/:id', (요청, 응답)=>{
+  recommend = 0
   db.collection('game_comments')
-  .find({ $and : [{ parent : 요청.params.id }]})
-  .sort({ recommend : -1 })
-  .skip(recommend)
-  .limit(3)
+  .find({ parent : 요청.params.id })
+  .sort({ recommend : -1 }) // sort() -> -1은 오름차순 1은 내림차순
+  .skip(recommend) // skip() 파라미터 만큼 스킵하고보여줌(number)
+  .limit(3) // limit() 갯수제한 파라미터 만큼만 보여줌
   .toArray((에러, 결과)=>{
-    recommend = recommend + 3
     응답.send(결과)
   })
 })
 
+router.get('/moreload/:id', (요청, 응답)=>{
+  recommend = recommend + 3
+  let 나머지 = true
+  db.collection('game_comments')
+  .find({ parent : 요청.params.id })
+  .sort({ recommend : -1 })
+  .skip(recommend)
+  .limit(3)
+  .toArray((에러, 결과)=>{
+    if(결과.length < 3) console.log('이제 없어유')
+    응답.send(결과)
+  })
+})
+
+//이제 남은 데이터가 없다고 하면 프론트한테 알려줘야하는데
 router.post('/reset', (요청, 응답)=>{
   recommend = 0;
   응답.send()
