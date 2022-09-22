@@ -20,18 +20,17 @@ function Comments({ item }){
 
   const dispatch = useDispatch()
   const comments = useSelector((state)=>state.comments) //요놈은 array 가 맞습니다.
-  const [count, setCount] = useState(0)
+  const [게시물총개수, 게시물총개수변경] = useState('')
 
   useEffect(()=>{
+    axios.get(`http://localhost:3001/total/${item._id}`)
+    .then((result)=>{ 게시물총개수변경(result.data.length) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+
     axios.get(`http://localhost:3001/firstload/${item._id}`)
     .then((result)=>{ dispatch(initialComments(result.data)) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
 
-    return ()=>{ axios.post(`http://localhost:3001/reset`)
-    .then((result)=>{ console.log(result) })
-    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
-    console.log('언마운트')
-    };
   },[])
 
   const 코멘트더보기 = ()=>{
@@ -40,13 +39,6 @@ function Comments({ item }){
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
   }
 
-  //새로고침할때 언마운트 처리가 안되서 작동이 안되는것같은데..
-
-  // useEffect(()=>{
-  //   console.log('마운트')
-  //   return ()=>{ console.log('언마운트') }
-  // },[])
-  
   
   
   return(
@@ -67,21 +59,16 @@ function Comments({ item }){
           <input type="radio" id="최신순" className={ styles.commentsInput } name="추천순&최신순"/>
           <label for="최신순">최신순</label>
         </div>
-      
-        {/* <ul>
-          { comments.length ? comments.map((a, i)=>{ return <CommentBox item={a}/> }) 
-          : <NullComponent/> }
-        </ul> */}
 
         <ul>
           { comments.length 
-          ? comments.map((a, i)=>{ 
-            return <CommentBox item={a}/> 
-          }) 
+          ? comments.map((a, i)=> <CommentBox item={a}/> ) 
           : <NullComponent/> }
         </ul>
 
-        <button className={ styles.더보기버튼 } onClick={()=>{ 코멘트더보기() }}>더보기</button>
+        { 게시물총개수 != comments.length
+        ? <button className={ styles.더보기버튼 } onClick={()=>{ 코멘트더보기() }}>더보기</button>
+        : null }
       </div>
 
     </div>
@@ -127,28 +114,7 @@ function CommentBox({ item }) {
   }
 
   return(
-    // <li className={ styles.inner }>
-    //   <div className={ styles.commentBox }>
-    //     <ul className={ styles.userInfo }>
-    //       <li className={ styles.name }>{ item.userName }</li>
-    //       <li className={ styles.separator }></li>
-    //       <li className={ styles.date }>{ item.date }</li>
-    //       <li className={ styles.separator }></li>
-    //       <li className={ styles.recommend }>{ item.recommend } 추천 ☻</li>
-    //     </ul>
-    //     <p className={ styles.comment }>{ item.content }</p>
-    //   </div>
 
-    //   <div className={ styles.btnBox }>
-    //     <div className={ styles.btnWrap }>
-    //       <button className="btn" onClick={()=>{ }}>추천</button>
-    //       <button className="btnRed">삭제</button>
-    //     </div>
-    //     <span className="btnSmall">신고</span>
-        
-    //   </div>
-      
-    // </li>
     <li className={ styles.inner }>
       <div className={ styles.commentBox }>
         <ul className={ styles.userInfo }>
