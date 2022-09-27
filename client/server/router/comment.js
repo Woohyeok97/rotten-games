@@ -72,10 +72,11 @@ router.get('/moreload/:id', (요청, 응답)=>{
 
 router.get('/recommend/:id', (요청, 응답)=>{
   db.collection('game_comments').updateOne({ _id : ObjectId(요청.params.id) }, { $inc : {recommend : 1}}),
-  (에러, 결과)=>{
+  db.collection('game_comments').findOne({ _id : ObjectId(요청.params.id) }, (에러, 결과)=>{
     응답.send(결과)
-  }
+  })
 })
+
 
 
 

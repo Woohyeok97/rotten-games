@@ -9,11 +9,18 @@ let comments = createSlice({
       },
       moreComments(state, action){
         return [...state, ...action.payload]
+      },
+      recommendComment(state, action){
+        let index = state.findIndex((a)=> a._id == action.payload._id)
+        let newArr = [...state]
+        newArr[index] = action.payload
+        return [...newArr]
       }
     }
   })
 
 export let { initialComments } = comments.actions
 export let { moreComments } = comments.actions
+export let { recommendComment } = comments.actions
 
 export default comments.reducer;

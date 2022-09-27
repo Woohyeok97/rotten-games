@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import io from 'socket.io-client';
+
 
 
 //프론트에서 sockcet을 사용하기 위해 io 모듈을 import
@@ -13,6 +13,7 @@ import NullComponent from "./nullcomponent";
 
 import { initialComments } from '../Store/comment'
 import { moreComments } from '../Store/comment'
+import { recommendComment } from '../Store/comment'
 
 
 
@@ -38,6 +39,9 @@ function Comments({ item }){
     .then((result)=>{ dispatch( moreComments(result.data) ) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
   }
+  
+
+ 
 
   
   
@@ -107,12 +111,14 @@ function CommentWrite({ item }) {
 
 function CommentBox({ item }) {
 
+  const dispatch = useDispatch()
+
   const 추천하기 = ()=>{
     axios.get(`http://localhost:3001/recommend/${item._id}`)
-    .then((result)=>{ console.log('추천!') })
+    .then((result)=>{ dispatch(recommendComment(result.data)) })
     .catch((에러)=>{ console.log('추천하기 실패~!', 에러) })
   }
-
+  
   return(
 
     <li className={ styles.inner }>
@@ -126,8 +132,7 @@ function CommentBox({ item }) {
         </ul>
 
         <p className={ styles.comment }>{ item.content }</p>
-
-        <button className={ styles.recommendBtn }>
+        <button className={ styles.recommendBtn } onClick={()=>{ 추천하기() }}>
           <span>☻</span>
           <span>{ item.recommend }</span>
         </button>
@@ -136,7 +141,7 @@ function CommentBox({ item }) {
 
       <div className={ styles.btnBox }>
         <div className={ styles.btnWrap }>
-          <button className="btn" onClick={()=>{ }}>추천</button>
+          <button className="btn">추천</button>
           <button className="btnRed">삭제</button>
         </div>
         <span className="btnSmall">신고</span>

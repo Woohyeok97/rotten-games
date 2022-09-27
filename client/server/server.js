@@ -1,8 +1,5 @@
 const express = require('express')
 const app = express();
-
-const http = require('http').createServer(app)
-const io =  require('socket.io',{ cors : { origin :"*", credentials :true } })(http)
 //현재 서버가 소켓의 서버임을 설정
 const cors = require('cors');
 
@@ -29,18 +26,8 @@ app.use('/', mypage)
 
 //socket을  사용할땐 app.listen 말고 http.listen을 사용함
 const port = 3001;
-http.listen(port, ()=>{ console.log(`Listening on ${port} port!!`) });
+app.listen(port, ()=>{ console.log(`Listening on ${port} port!!`) });
 
-io.on('connetion', (socket)=>{ 
-    console.log('연결됬어요');
-    socket.on('test', (req) => {
-		console.log(req);
-	});
-
-    socket.on('disconnetion', ()=>{
-        
-    })
-})
 
 //socket 에서 중요한 함수 2가지
 // 1. socket.on('이벤트명', (파라미터)=>{ 실행할코드 })
