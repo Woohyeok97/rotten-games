@@ -1,50 +1,45 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 
-
-//프론트에서 sockcet을 사용하기 위해 io 모듈을 import
-
 //CSS
 import styles from '../styles/components/comments.module.scss'
+//Common Components
 import NullComponent from "./nullcomponent";
-
-import { initialComments } from '../Store/comment'
-import { moreComments } from '../Store/comment'
-import { recommendComment } from '../Store/comment'
-
 
 
 function Comments({ item }){
 
-  const dispatch = useDispatch()
-  const comments = useSelector((state)=>state.comments) //요놈은 array 가 맞습니다.
-  const [게시물총개수, 게시물총개수변경] = useState('')
+  const [코멘트개수, 코멘트개수변경] = useState('')
+  const [코멘트, 코멘트변경] = useState([])
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/total/${item._id}`)
-    .then((result)=>{ 게시물총개수변경(result.data.length) })
-    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
-
-    axios.get(`http://localhost:3001/firstload/${item._id}`)
-    .then((result)=>{ dispatch(initialComments(result.data)) })
-    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
-
+    코멘트개수구하기()
+    commentFirstLoad()
   },[])
 
-  const 코멘트더보기 = ()=>{
-    axios.get(`http://localhost:3001/moreload/${item._id}`)
-    .then((result)=>{ dispatch( moreComments(result.data) ) })
+
+  function 코멘트개수구하기() {
+    axios.get(`http://localhost:3001/total/${item._id}`)
+    .then((result)=>{ 코멘트개수변경(result.data.length) })
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
   }
-  
 
- 
+  function commentFirstLoad() {
+    axios.get(`http://localhost:3001/firstload/${item._id}`)
+    .then((result)=>{ 코멘트변경([...코멘트, ...result.data]) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+  }
 
-  
-  
+  function commentMoreLoad() {
+    axios.get(`http://localhost:3001/moreload/${item._id}`)
+    .then((result)=>{ 코멘트변경([...코멘트, ...result.data]) })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+  }
+
+
+
   return(
     <div className={ styles.comments }>
     
@@ -53,9 +48,7 @@ function Comments({ item }){
           <CommentWrite item={item}/>
       </div>
      
-
       <div className={ styles.userComments }>
-
         <div className={ styles.commentsInputBox }>
           <input type="radio" id="추천순" className={ styles.commentsInput } name="추천순&최신순"
           defaultChecked="checked"/>
@@ -65,16 +58,15 @@ function Comments({ item }){
         </div>
 
         <ul>
-          { comments.length 
-          ? comments.map((a, i)=> <CommentBox item={a}/> ) 
+          { 코멘트.length 
+          ? 코멘트.map((a, i)=> <CommentBox item={a} 코멘트={코멘트} 코멘트변경={코멘트변경}/> )
           : <NullComponent/> }
         </ul>
 
-        { 게시물총개수 != comments.length
-        ? <button className={ styles.더보기버튼 } onClick={()=>{ 코멘트더보기() }}>더보기</button>
+        { 코멘트개수 != 코멘트.length
+        ? <button className={ styles.더보기버튼 } onClick={()=>{ commentMoreLoad() }}>더보기</button>
         : null }
       </div>
-
     </div>
   )
 }
@@ -109,18 +101,24 @@ function CommentWrite({ item }) {
 }
 
 
-function CommentBox({ item }) {
-
-  const dispatch = useDispatch()
+function CommentBox({ item, 코멘트, 코멘트변경 }) {
 
   const 추천하기 = ()=>{
-    axios.get(`http://localhost:3001/recommend/${item._id}`)
-    .then((result)=>{ dispatch(recommendComment(result.data)) })
-    .catch((에러)=>{ console.log('추천하기 실패~!', 에러) })
+    let newArr = [...코멘트]
+    let index = newArr.findIndex((a)=> a._id == item._id)
+    newArr[index].recommend++
+    코멘트변경(newArr)
   }
-  
-  return(
 
+  const commentrequest = ()=>{
+    axios.put(`http://localhost:3001/recommend/${item._id}`)
+    .then((result)=>{  })
+    .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
+  }
+
+
+  return(
+  
     <li className={ styles.inner }>
       <div className={ styles.commentBox }>
         <ul className={ styles.userInfo }>
@@ -132,22 +130,13 @@ function CommentBox({ item }) {
         </ul>
 
         <p className={ styles.comment }>{ item.content }</p>
-        <button className={ styles.recommendBtn } onClick={()=>{ 추천하기() }}>
-          <span>☻</span>
-          <span>{ item.recommend }</span>
-        </button>
+        <button className={ styles.recommendBtn } onClick={()=>{ 추천하기(); commentrequest() }}>☻{ item.recommend }</button>
 
       </div>
 
       <div className={ styles.btnBox }>
-        <div className={ styles.btnWrap }>
-          <button className="btn">추천</button>
-          <button className="btnRed">삭제</button>
-        </div>
         <span className="btnSmall">신고</span>
-        
-      </div>
-      
+      </div>  
     </li>
   )
 }

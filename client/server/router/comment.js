@@ -50,7 +50,7 @@ router.get('/firstload/:id', (요청, 응답)=>{
 })
 //더보기 버튼 클릭시 프론트한테 추가로 보내줄 게시물데이터
 router.get('/moreload/:id', (요청, 응답)=>{
-  slice = slice + 3
+  slice =+ 3
   db.collection('game_comments')
   .find({ parent : 요청.params.id })
   .sort({ recommend : -1 })
@@ -70,14 +70,11 @@ router.get('/moreload/:id', (요청, 응답)=>{
 // 3. 3개중에 추천수가 가장낮은 게시물의 추천수를 변수에 저장함(let)
 // 4. 그래서 다음에 요청을 할때 변수에 저장한 추천수보다는 낮은 게시물 3개를 추천높은순으로 가져옴 -> 그리고 변수수정
 
-router.get('/recommend/:id', (요청, 응답)=>{
-  db.collection('game_comments').updateOne({ _id : ObjectId(요청.params.id) }, { $inc : {recommend : 1}}),
-  db.collection('game_comments').findOne({ _id : ObjectId(요청.params.id) }, (에러, 결과)=>{
+router.put('/recommend/:id', (요청, 응답)=>{
+  db.collection('game_comments').updateOne({ _id : ObjectId(요청.params.id) }, { $inc : {recommend : 1}}), (에러, 결과)=>{
     응답.send(결과)
-  })
+  }
 })
-
-
 
 
 module.exports = router
