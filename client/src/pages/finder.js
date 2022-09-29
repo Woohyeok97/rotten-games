@@ -37,7 +37,6 @@ function DataCard({ 데이터 }) {
       <img src={ `/image/${데이터.title}/${데이터.image_main}` }/>
       <div className={styles.cardInfo}>
         <p>{ 데이터.title }</p>
-        <p>유저평점 : ★★★★☆</p>
       </div>
     </div>
     )

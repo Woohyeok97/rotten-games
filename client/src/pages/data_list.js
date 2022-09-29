@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import axios from "axios";
-import CSSTransition from 'react-transition-group/CSSTransition';
 
 //Custom Hooks
 import useSetImage from "../hooks/common/usesetimage";
@@ -68,7 +66,6 @@ function DataCard({ item }) {
 function Images({ item, imageState }) {
   const { 게임이미지, 이미지불러오기 } = useSetImage(item)
   
-  
   useEffect(()=>{
     이미지불러오기()
   },[imageState])
@@ -84,12 +81,6 @@ function Images({ item, imageState }) {
         <h4>배경 이미지</h4>
         <img className="img" src={`/image/${item.title}/${게임이미지.image_main}`}/>
       </div>
-
-      <div className={styles.imgItem}>
-        <h4>스크린샷 1</h4>
-        <img className="img" src={`/image/너굴맨.jpeg`}/>
-      </div>
-
     </div>
   )
 }

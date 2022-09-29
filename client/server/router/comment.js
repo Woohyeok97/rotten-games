@@ -15,12 +15,15 @@ MongoClient.connect("mongodb://qordngur156:662qor663@cluster0-shard-00-00.yu0ka.
 })
 
 router.post('/commentUpload', (요청, 응답)=>{
+  const date = new Date();
+  const nowDate = new Intl.DateTimeFormat('kr',{ dateStyle : 'long' , timeStyle : 'medium' }).format(date)
+
   const comment = {
     parent : 요청.body.parent,
     content : 요청.body.content,
     userID : '준비중 입니다~!',
-    userName : '고나우',
-    date : '기원전 2333년',
+    userName : 요청.body.userName,
+    date : nowDate,
     recommend : 0,
   }  
   db.collection('game_comments').insertOne(comment, (에러, 결과)=>{
@@ -50,7 +53,7 @@ router.get('/firstload/:id', (요청, 응답)=>{
 })
 //더보기 버튼 클릭시 프론트한테 추가로 보내줄 게시물데이터
 router.get('/moreload/:id', (요청, 응답)=>{
-  slice =+ 3
+  slice = slice + 3
   db.collection('game_comments')
   .find({ parent : 요청.params.id })
   .sort({ recommend : -1 })

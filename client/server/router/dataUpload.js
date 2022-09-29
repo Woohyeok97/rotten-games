@@ -28,7 +28,6 @@ let storage = multer.diskStorage({
 let upload = multer({storage : storage}).fields([
   { name : 'image_main' },
   { name : 'image_background' },
-  { name : 'images' , maxCount : 6 }
 ])
 
 //이미지 저장폴더 만들기 함수

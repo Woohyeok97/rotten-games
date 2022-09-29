@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios'
 
@@ -13,19 +13,11 @@ import styles from '../styles/pages/upload.module.scss'
 //Layout Components
 import TemplateColumn from '../components/layout/templateColumn';
 
+
 function Upload() {
 
-  return(
-    <section className={styles.upload}>
-      <AddData/>
-    </section>
-  )
-}
-
-
-function AddData() {
-
   const gameSort = useSelector((state)=>state.gameSort)
+  //Custom Hooks
   const { 게임데이터, 문자데이터변경, 배열데이터변경 } = useSetData('');
   const { 게임이미지, 게임이미지변경, modifyImageHandle } = useSetImage()
 
@@ -41,20 +33,16 @@ function AddData() {
     }).catch((에러)=>{ console.log('에러발생!', 에러) })}
 
   const uploadCheck = ()=>{
-    if(title && genre && platform.length && developer && tag.length && 게임이미지.image_main && 게임이미지.image_background) {
+    const isCheck = title && genre && platform.length && developer && tag.length && 게임이미지.image_main && 게임이미지.image_background && 게임이미지.youtube_url
+
+    if(isCheck) {
       postData();
       alert('게임데이터 업로드 완료!');
     } else { alert('아~ 빈칸 있잖슴~'); setBlankSwitch(!blankSwitch) }
   }
 
-  useEffect(()=>{
-    console.log(게임데이터)
-  },[게임데이터])
-  useEffect(()=>{
-    console.log(게임이미지)
-  },[게임이미지])
-
   return(
+    <section className={styles.upload}>
     <TemplateColumn>
       <form className={styles.form}>
         <h3>데이터 업로드중...</h3>
@@ -66,7 +54,7 @@ function AddData() {
           { blankSwitch ? blankCheck(게임데이터.title) : null }
         </div>
 
-        
+    
         <div className="upload-form-item game-image-box"> 
           <h4>메인 이미지</h4>
           <input name="image_main" type="file" onChange={(e)=>{ modifyImageHandle(e) }}/>
@@ -80,6 +68,12 @@ function AddData() {
           { blankSwitch ? blankCheck(게임이미지.image_background) : null } 
         </div>
 
+        <div className={styles.textBox}>
+          <h4>Trailer URL</h4>
+          <input type="text" name="title" className="textInput" 
+          onChange={(e)=>{ 게임이미지변경({...게임이미지, youtube_url : e.target.value}) }}/>
+          { blankSwitch ? blankCheck(게임이미지.youtube_url) : null }
+        </div>
         
         <div>
           <h4>장르</h4>
@@ -137,6 +131,7 @@ function AddData() {
       </div>
      
     </TemplateColumn>
+    </section>
   )
 }
 

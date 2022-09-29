@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import axios from 'axios';
 
 //컴포넌트
@@ -17,9 +17,7 @@ import Login from './pages/login';
 import Upload from './pages/upload';
 import DataList from './pages/data_list';
 import Edit from './pages/edit';
-import MyPage from './pages/mypage';
 import SignUp from './pages/signup';
-import NullComponent from './components/nullcomponent';
 //CSS
 import './styles/common.scss';
 //Redux State 변경함수
@@ -29,18 +27,14 @@ import { setGameData } from "./Store/gamedata.js"
 
 function App() {
 
-//useEffect 함수
+const gameData = useSelector((state)=>state.gameData)
+const dispatech = useDispatch()
+
 useEffect(()=>{
   axios.get('http://localhost:3001/requireGameData')
   .then((결과)=>{ dispatech(setGameData(결과.data.game)) })
-  .catch(()=>{ console.log('실패!') }) 
+  .catch((에러)=>{ console.log('실패!', 에러) }) 
 },[])
-
-let dispatech = useDispatch()
-const gameData = useSelector((state)=>state.gameData)
-const JWTtoken = useSelector((state)=>state.JWTtoken)
-
-
 
 
 return (
@@ -55,7 +49,6 @@ return (
       <Route path='/edit/:id' element={ <ManagersPageLayout><Edit/></ManagersPageLayout> }/>
       <Route path='/login' element={ <Layout> <Login/> </Layout> }/>
       <Route path='/signup' element={ <Layout> <SignUp/> </Layout> }/>
-      <Route path='/mypage' element={ JWTtoken ? <Layout> <MyPage/> </Layout> : <Layout> <NullComponent/> </Layout> } />
       <Route path='/upload' element={ <ManagersPageLayout><Upload/></ManagersPageLayout>}/>
     </Routes>
       : null }

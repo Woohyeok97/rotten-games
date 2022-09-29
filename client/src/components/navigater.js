@@ -11,8 +11,6 @@ function Navigater({ hereData, setHereData }) {
   const gameData = useSelector((state)=> state.gameData)
 
   const [현재장르, 현재장르변경] = useState('모든게임')
-  const [현재정렬, 현재정렬변경] = useState('이름 순')
-  const 정렬 = ['이름 순', '최신 순', '평가 높은 순', '평가 낮은 순']
 
   const hereData바꾸기 = (sort)=>{
     console.log(hereData)
@@ -31,17 +29,10 @@ function Navigater({ hereData, setHereData }) {
           { gameSort.장르.map((a, i)=>{ return <li><label for={'genre'}
           onClick={()=>{ 현재장르변경(a); hereData바꾸기(a);  }}>{a}</label></li> }) }
         </MiniDrop>
-
-        <MiniDrop state={현재정렬} id={'sort'}>
-        { 정렬.map((a, i)=>{ return <li><label for={'sort'} onClick={()=>{ 현재정렬변경(a) }}>{a}</label></li> }) }
-        </MiniDrop>
         
       </div>
       
-      <div className={styles.searchBox}>
-        <input className="textInput" type="text" placeholder="찾는게 안나와"/>
-        <span>🔍</span>
-      </div>
+
     </HeaderTemplate>
   )
 }
@@ -64,20 +55,5 @@ function MiniDrop(props) {
   )
 }
 
-
-// function MiniDrop() {
-//   return(
-//     <div >
-//     <input id={"dropdown" + props.id} className="in" type="checkbox"/>
-//     <label className="dropdown-label" for={"dropdown" + props.id}>
-//       <div>{ props.value }</div>
-//       <div className="dropdown-icon">▾</div> 
-//     </label>
-//     <div className="content">
-//     { props.children }
-//     </div>
-//   </div>
-//   )
-// }
 
 export default Navigater

@@ -7,7 +7,8 @@ import axios from "axios";
 import styles from '../styles/components/comments.module.scss'
 //Common Components
 import NullComponent from "./nullcomponent";
-
+//Custom Hooks
+import useIsBlank from "../hooks/common/useisblank";
 
 function Comments({ item }){
 
@@ -39,7 +40,7 @@ function Comments({ item }){
   }
 
 
-
+  console.log(코멘트)
   return(
     <div className={ styles.comments }>
     
@@ -73,30 +74,49 @@ function Comments({ item }){
 
 
 function CommentWrite({ item }) {
-  const [코멘트, 코멘트변경] = useState({
+  const { blankSwitch, setBlankSwitch, blankCheck } = useIsBlank()
+
+  const [작성코멘트, 작성코멘트변경] = useState({
     parent : item._id,
+    userName : '',
     content : '',
+    date : ''
   })
 
   const postComment = ()=>{
-    axios.post(`http://localhost:3001/commentUpload`, 코멘트)
-    .then((result)=>{ window.location.replace(`/detail/${item.title}`); })
-    //나중에는 작성한 코멘트가 바로 프론트에 출력되게 해보자
+    axios.post(`http://localhost:3001/commentUpload`, 작성코멘트)
+    .then((result)=>{  })
     .catch((에러)=>{ console.log('에러발생했잖슴~', 에러) })
   }
 
-  return (
-    <div className={ styles.commentWrite }>
-      <form className={ styles.textareaBox }>
-        <div className={ styles.userName }>고나우</div>
-        {/* textarea 높이조절은 js 구현하자~ */}
-        <textarea className={ styles.textarea } type="text" spellcheck="false" 
-        placeholder={`${item.title}에 대한 당신의 한줄평은?`}
-        onChange={(e)=>{ 코멘트변경({ ...코멘트, content : e.target.value }) }}/>
-      </form>
+
+  const uploadCheck = (data)=>{
+    if(data.userName && data.content) {
+      postComment();
+      alert('코멘트 작성완료!')
+      window.location.replace(`/detail/${item.title}`);
+    } else { alert('빈칸있잖슴!'); setBlankSwitch(!blankSwitch) }
+  }
+
+
   
-      <button className={ styles.btn } onClick={()=>{ postComment() }}>등록</button>
-    </div>
+
+
+  return (
+    <div className={ styles.textareaBox }>
+      <textarea className={ styles.textarea } type="text" spellcheck="false" 
+      placeholder={`${item.title}에 대한 당신의 한줄평은?`}
+      onChange={(e)=>{ 작성코멘트변경({ ...작성코멘트, content : e.target.value }) }}/>
+      { blankSwitch ? blankCheck(작성코멘트.content) : null }
+
+      <div className={ styles.btnBox }>
+        <input className={ styles.userName } type="text" placeholder="작성자"
+        onChange={(e)=>{ 작성코멘트변경({...작성코멘트, userName : e.target.value }) }}/>
+        { blankSwitch ? blankCheck(작성코멘트.userName) : null }
+
+        <button className={ styles.btn } onClick={()=>{ uploadCheck(작성코멘트) }}>코멘트작성</button> 
+      </div>   
+    </div>   
   )
 }
 
@@ -116,7 +136,6 @@ function CommentBox({ item, 코멘트, 코멘트변경 }) {
     .catch((에러)=>{ console.log('에러발생! 에러발생!!', 에러) })
   }
 
-
   return(
   
     <li className={ styles.inner }>
@@ -125,8 +144,6 @@ function CommentBox({ item, 코멘트, 코멘트변경 }) {
           <li className={ styles.name }>{ item.userName }</li>          
           <li className={ styles.separator }></li>
           <li className={ styles.date }>{ item.date }</li>
-          <li className={ styles.separator }></li>
-          <li className={ styles.score }>⭐️⭐️⭐️⭐️⭐️</li>
         </ul>
 
         <p className={ styles.comment }>{ item.content }</p>
