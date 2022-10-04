@@ -29,7 +29,8 @@ function Edit(){
     이미지불러오기();
     setData(item);
   },[])
-  console.log(게임이미지.youtube_url)
+  console.log(게임데이터)
+  console.log(게임이미지)
   return(
     <section className={styles.Edit}>
      <TemplateColumn>
@@ -110,7 +111,7 @@ function ModifyInfo({ item, 문자데이터변경, 배열데이터변경, 게임
 function ModifyImages({ item, 게임이미지, 게임이미지변경, modifyImageHandle }) {
 
   const { imageURL, changeImg, } = useRenderImg(게임이미지)
-  console.log(게임이미지.youtube_url)
+
 
   return(
     <div className={styles.imgWrap}>
@@ -142,6 +143,12 @@ function ModifyImages({ item, 게임이미지, 게임이미지변경, modifyImag
 function ButtonWrap({ item, imageState, setImageState, 게임데이터, 게임이미지 }) {
   const { postInfo, payloadImg, modifyImg } = usePayload()
 
+  // const uploadCheck = ()=>{
+
+  // }
+  
+
+
   const dataModify = ()=> {
     axios.put(`http://localhost:3001/modifyData/${item._id}`,  {게임데이터, 기존네임 : item.title})
     .then((result)=>{ 
@@ -150,8 +157,6 @@ function ButtonWrap({ item, imageState, setImageState, 게임데이터, 게임�
     modifyImg(item._id)
   })
     .catch((err)=>{ '에러발생했잖슴~', err })
-
-
   }
 
   return(

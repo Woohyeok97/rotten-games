@@ -1,11 +1,21 @@
 .finder {
 
 }
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1280px;
+  align-items: center;
+  padding: 24px;
+  margin: 12px auto;
+  background-color: #282830;
+  border-radius: 0.25rem;
+}
 .card {
   flex: 0 0 30%;
   flex-basis: 33%;
   position: relative;
-  margin-bottom: 60px;
+
   box-sizing: border-box;
   transition: all 0.2s linear;
 
@@ -43,5 +53,6 @@
 .card:hover {
   transform: scale(1.08);
   box-sizing: border-box;
+  z-index: 10;
 }
 

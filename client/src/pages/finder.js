@@ -1,11 +1,10 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+
 //Common Components
 import Navigater from '../components/navigater';
-import Dropdown from '../components/dropdown';
 //CSS
 import styles from '../styles/pages/finder.module.scss';
 //Layout Components
@@ -20,9 +19,9 @@ function Finder() {
   return(
     <section className={styles.finder}>
       <Navigater hereData={hereData} setHereData={setHereData} />
-      <Template>
-      { hereData.map((a, i)=>{ return <DataCard 데이터={a}/> }) }  
-      </Template>
+      <div className={ styles.inner }>
+      { hereData.map((a, i)=>{ return <DataCard 데이터={a}/> }) }
+      </div>
     </section>
   )
 }
