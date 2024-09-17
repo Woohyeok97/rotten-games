@@ -135,7 +135,6 @@ function Trailer({ item, 게임이미지 }) {
 function ScreenShot({ item }) {
   return(
     <div>
-    나는 스크린샷
     <NullComponent/>
     </div>
   )

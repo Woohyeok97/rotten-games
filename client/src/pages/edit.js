@@ -14,7 +14,6 @@ import styles from '../styles/pages/edit.module.scss'
 //Common Components
 import { DropButton } from "../components/assets";
 //Layout Components
-import Template from "../components/layout/template";
 import TemplateColumn from "../components/layout/templateColumn";
 
 function Edit(){
@@ -30,10 +29,8 @@ function Edit(){
     이미지불러오기();
     setData(item);
   },[])
-  useEffect(()=>{
-    console.log('저는 edit 입니당', 게임데이터)
-  },[게임데이터])
-  
+  console.log(게임데이터)
+  console.log(게임이미지)
   return(
     <section className={styles.Edit}>
      <TemplateColumn>
@@ -44,7 +41,8 @@ function Edit(){
       게임데이터={게임데이터} 게임이미지={게임이미지}/>
 
       { imageState ? 
-      <ModifyImages item={item} 게임이미지={게임이미지} modifyImageHandle={modifyImageHandle} />
+      <ModifyImages item={item} 게임이미지={게임이미지} 게임이미지변경={게임이미지변경}
+      modifyImageHandle={modifyImageHandle} />
        : null }
        
      </TemplateColumn>
@@ -110,12 +108,20 @@ function ModifyInfo({ item, 문자데이터변경, 배열데이터변경, 게임
 
 
 
-function ModifyImages({ item, 게임이미지, modifyImageHandle }) {
+function ModifyImages({ item, 게임이미지, 게임이미지변경, modifyImageHandle }) {
 
   const { imageURL, changeImg, } = useRenderImg(게임이미지)
 
+
   return(
     <div className={styles.imgWrap}>
+
+      <div className={styles.textBox}>
+        <h4>Trailer URL</h4>
+        <input type="text" className="textInput" name="title" defaultValue={게임이미지.youtube_url}
+          onChange={(e)=>{ 게임이미지변경({...게임이미지, youtube_url : e.target.value}) }}/>
+      </div>
+
       <div className={styles.imgItem}>
         <h4>메인 이미지</h4>
         <img className="img" src={imageURL.메인이미지}/>
@@ -130,20 +136,18 @@ function ModifyImages({ item, 게임이미지, modifyImageHandle }) {
           onChange={(e)=>{ changeImg(e); modifyImageHandle(e) }}/> 
       </div>
 
-      <div className={styles.imgItem}>
-        <h4>스크린샷 1</h4>
-        <img className="img" src={imageURL.스크린샷}/>
-        <input type="file" placeholder="이미지변경" className="btn" name="images" id="스크린샷"
-         onChange={(e)=>{ changeImg(e); modifyImageHandle(e) }}/>
-      </div>
     </div>
   )
 }
 
 function ButtonWrap({ item, imageState, setImageState, 게임데이터, 게임이미지 }) {
   const { postInfo, payloadImg, modifyImg } = usePayload()
-  // const 기존네임 = item.title
-  // console.log(기존네임)
+
+  // const uploadCheck = ()=>{
+
+  // }
+  
+
 
   const dataModify = ()=> {
     axios.put(`http://localhost:3001/modifyData/${item._id}`,  {게임데이터, 기존네임 : item.title})
@@ -153,8 +157,6 @@ function ButtonWrap({ item, imageState, setImageState, 게임데이터, 게임�
     modifyImg(item._id)
   })
     .catch((err)=>{ '에러발생했잖슴~', err })
-
-
   }
 
   return(

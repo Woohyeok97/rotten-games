@@ -19,7 +19,7 @@ function Header() {
 
       <div className={ styles.content }>
         <ul>
-          <li className={ styles.menu } onClick={()=>{ navigate('/datalist') }} style={{ color:'salmon' }}>관리자 페이지</li>
+          <li className={ styles.menu } onClick={()=>{ navigate('/datalist') }} style={{ color:'salmon' }}>데이터관리</li>
           <li id={ styles.separator }></li>
           <li className={ styles.menu } onClick={()=>{ navigate('/finder') }}>모든게임</li>
           <li id={ styles.separator }></li>

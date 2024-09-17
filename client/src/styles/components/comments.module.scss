@@ -5,55 +5,67 @@
 }
 .header {
   background-color: #31313c;
-  padding: 12px;
+  padding: 24px;
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-sizing: border-box;
 }
 
-.commentWrite {
-  display: flex;
-  height: 124px;
-  padding: 12px;
-  margin: 12px 0;
-  justify-content: space-between;
-  background-color: #282830;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
+  
+  
+.textareaBox {
+  
 
-  .textareaBox {
-    flex-basis: 100%;
-    .userName {
-      color: #f9f9f9;
-      margin-bottom: 6px;
-    }
-    .textarea {
-      background-color: #282830;
-      color: #9e9eb1;
-      font-size: 16px;
-      width: 100%;
-      
-    }
-  }
-  .btn {
-    height: 64px;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 12px;
-    height: 100%;
-    min-width: 124px;
-    color: #f9f9f9;;
-    border: 1px solid transparent;
-    border-radius: 0.5rem;
+  .textarea {
+    width: 100%;
+    padding: 8px 12px;
+    color: #f9f9f9;
+    font-size: 18px;
+    line-height: 0.4;
+    background-color: transparent;
+    border-bottom: 2px solid #515163;
     box-sizing: border-box;
-    background: #4171d6;
-    cursor: pointer;
   }
-  .btn:hover {
-    background-color: #5383e8;
+  .textarea:focus {
+    border-bottom: 2px solid #9e9eb1;
   }
+  .btnBox {
+    display: flex;
+    justify-content: space-between;
+
+    .userName {
+      width: 124px;
+      padding: 8px 12px;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #f9f9f9;
+      background-color: transparent;
+      border-bottom: 2px solid #515163;
+      box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .userName:focus {
+      border-bottom: 2px solid #9e9eb1;
+    }
+    .btn {
+      font-size: 16px;
+      font-weight: 400;
+      padding: 12px;
+      color: #f9f9f9;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      background: #4171d6;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #5383e8;
+    }
+  }
+  
+  
 }
+
 
 .commentsInputBox {
   display: flex;
@@ -163,8 +175,6 @@
 
 .btnBox {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: flex-end;
   .btnWrap {
     display: flex;
